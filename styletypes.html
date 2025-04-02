@@ -1,0 +1,820 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Image Style Explorer | Designer's Toolkit</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <style>
+    :root {
+      --primary-color: #2E3A59;
+      --secondary-color: #1A1F2B;
+      --accent-color: #0F766E;
+      --light-color: #F3F4F6;
+      --dark-color: #1F2937;
+      --success-color: #0F766E;
+      --warning-color: #EAB308;
+      --danger-color: #991B1B;
+      --transition: all 0.3s ease;
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    
+    body {
+      background-color: #f4f4f6;
+      color: #333;
+      display: grid;
+      grid-template-columns: 1fr 220px;
+      min-height: 100vh;
+    }
+    
+    .container {
+      padding: 0 0 50px 0;
+      overflow-x: hidden;
+    }
+    
+    .hero {
+      background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+      color: #fff;
+      padding: 3rem 2rem;
+      text-align: center;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    }
+    
+    .hero h1 {
+      font-size: 2.5rem;
+      margin-bottom: 0.5rem;
+      font-weight: 700;
+    }
+    
+    .hero p {
+      opacity: 0.9;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    
+    .project-form {
+      max-width: 800px;
+      margin: 20px auto;
+      padding: 15px;
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    
+    .project-form h2 {
+      margin-bottom: 15px;
+      color: var(--dark-color);
+    }
+    
+    .form-group {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+    
+    .form-group input {
+      flex: 1;
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      font-size: 1rem;
+    }
+    
+    .form-group button {
+      padding: 10px 15px;
+      background: var(--accent-color);
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    
+    .form-group button:hover {
+      background: var(--dark-color);
+    }
+    
+    .active-project {
+      padding: 5px 10px;
+      background: var(--light-color);
+      border-radius: 4px;
+      font-size: 0.9rem;
+      display: inline-block;
+      margin-top: 10px;
+    }
+    
+    .styles-content {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    
+    .styles-category {
+      margin-bottom: 20px;
+      background: white;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    
+    .category-header {
+      padding: 15px 20px;
+      background: var(--dark-color);
+      color: white;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: var(--transition);
+    }
+    
+    .category-header:hover {
+      background: var(--primary-color);
+    }
+    
+    .category-header h2 {
+      font-size: 1.2rem;
+      font-weight: 600;
+    }
+    
+    .category-content {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.5s ease;
+    }
+    
+    .category-content.active {
+      max-height: 2000px;
+    }
+    
+    .styles-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 15px;
+      padding: 20px;
+    }
+    
+    .style-card {
+      background: var(--light-color);
+      border-radius: 6px;
+      padding: 15px;
+      transition: var(--transition);
+      position: relative;
+    }
+    
+    .style-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+    
+    .style-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+    
+    .style-name {
+      font-weight: 600;
+      color: var(--dark-color);
+    }
+    
+    .style-actions {
+      display: flex;
+      gap: 10px;
+    }
+    
+    .action-btn {
+      background: none;
+      border: none;
+      color: var(--primary-color);
+      cursor: pointer;
+      font-size: 0.9rem;
+      transition: var(--transition);
+    }
+    
+    .action-btn:hover {
+      color: var(--accent-color);
+    }
+    
+    .style-card.favorite:before {
+      content: "";
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 0;
+      height: 0;
+      border-style: solid;
+      border-width: 0 20px 20px 0;
+      border-color: transparent var(--warning-color) transparent transparent;
+    }
+    
+    /* Sidebar */
+    .sidebar {
+      background: var(--dark-color);
+      color: white;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .sidebar-header {
+      text-align: center;
+      padding-bottom: 15px;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+      margin-bottom: 15px;
+    }
+    
+    .sidebar-header h2 {
+      font-size: 1.2rem;
+      font-weight: 600;
+    }
+    
+    .favorites-list {
+      flex: 1;
+      overflow-y: auto;
+    }
+    
+    .favorite-item {
+      padding: 10px;
+      border-radius: 4px;
+      margin-bottom: 5px;
+      background: rgba(255,255,255,0.05);
+      cursor: pointer;
+      transition: var(--transition);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .favorite-item:hover {
+      background: rgba(255,255,255,0.1);
+    }
+    
+    .remove-favorite {
+      opacity: 0.5;
+      transition: var(--transition);
+    }
+    
+    .favorite-item:hover .remove-favorite {
+      opacity: 1;
+    }
+    
+    .sidebar-footer {
+      margin-top: auto;
+      padding-top: 15px;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      text-align: center;
+    }
+    
+    .clear-btn {
+      width: 100%;
+      padding: 10px;
+      background: var(--danger-color);
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    
+    .clear-btn:hover {
+      background: #b32424;
+    }
+    
+    /* Toasts */
+    .toast-container {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      z-index: 1000;
+    }
+    
+    .toast {
+      min-width: 250px;
+      margin-bottom: 10px;
+      background: white;
+      color: #333;
+      padding: 15px;
+      border-radius: 4px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      animation: slideIn 0.3s, fadeOut 0.5s 2.5s forwards;
+      max-width: 400px;
+    }
+    
+    .toast.success {
+      border-left: 4px solid var(--success-color);
+    }
+    
+    .toast.info {
+      border-left: 4px solid var(--primary-color);
+    }
+    
+    .toast.warning {
+      border-left: 4px solid var(--warning-color);
+    }
+    
+    @keyframes slideIn {
+      from {transform: translateX(100%); opacity: 0;}
+      to {transform: translateX(0); opacity: 1;}
+    }
+    
+    @keyframes fadeOut {
+      from {opacity: 1;}
+      to {opacity: 0; height: 0; margin: 0; padding: 0;}
+    }
+    
+    /* Footer */
+    .footer {
+      text-align: center;
+      padding: 30px 20px;
+      background: white;
+      color: #555;
+      box-shadow: 0 -2px 10px rgba(0,0,0,0.05);
+      grid-column: 1 / -1;
+    }
+    
+    @media (max-width: 768px) {
+      body {
+        grid-template-columns: 1fr;
+      }
+      
+      .sidebar {
+        position: fixed;
+        top: 0;
+        right: 0;
+        height: 100%;
+        width: 200px;
+        transform: translateX(100%);
+        transition: transform 0.3s ease;
+        z-index: 100;
+      }
+      
+      .sidebar.active {
+        transform: translateX(0);
+      }
+      
+      .toggle-sidebar {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        background: var(--dark-color);
+        color: white;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        z-index: 101;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="hero">
+      <h1>Image Style Explorer</h1>
+      <p>Discover and save artistic styles for your AI image generation projects</p>
+    </div>
+    
+    <div class="project-form">
+      <h2>Project Setup</h2>
+      <div class="form-group">
+        <input type="text" id="projectName" placeholder="Enter project name (e.g., Brand Website, Product Campaign)">
+        <button id="createProject">Create Project</button>
+      </div>
+      <div id="activeProjectDisplay"></div>
+    </div>
+    
+    <div class="styles-content">
+      <!-- Artistic Styles -->
+      <div class="styles-category">
+        <div class="category-header">
+          <h2>Artistic Styles</h2>
+          <i class="fas fa-chevron-down"></i>
+        </div>
+        <div class="category-content">
+          <div class="styles-grid" id="artistic-styles">
+            <!-- Dynamic content will be inserted here -->
+          </div>
+        </div>
+      </div>
+      
+      <!-- Photography & Digital Styles -->
+      <div class="styles-category">
+        <div class="category-header">
+          <h2>Photography & Digital Styles</h2>
+          <i class="fas fa-chevron-down"></i>
+        </div>
+        <div class="category-content">
+          <div class="styles-grid" id="photo-digital-styles">
+            <!-- Dynamic content will be inserted here -->
+          </div>
+        </div>
+      </div>
+      
+      <!-- Contemporary Web Trends -->
+      <div class="styles-category">
+        <div class="category-header">
+          <h2>Contemporary Web Trends</h2>
+          <i class="fas fa-chevron-down"></i>
+        </div>
+        <div class="category-content">
+          <div class="styles-grid" id="web-trends">
+            <!-- Dynamic content will be inserted here -->
+          </div>
+        </div>
+      </div>
+      
+      <!-- Thematic Styles -->
+      <div class="styles-category">
+        <div class="category-header">
+          <h2>Thematic Styles</h2>
+          <i class="fas fa-chevron-down"></i>
+        </div>
+        <div class="category-content">
+          <div class="styles-grid" id="thematic-styles">
+            <!-- Dynamic content will be inserted here -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Sidebar for favorites -->
+  <div class="sidebar">
+    <div class="sidebar-header">
+      <h2>Favorites</h2>
+    </div>
+    <div class="favorites-list" id="favorites-list">
+      <!-- Dynamic favorites will be inserted here -->
+    </div>
+    <div class="sidebar-footer">
+      <button class="clear-btn" id="clearFavorites">Clear All Favorites</button>
+    </div>
+  </div>
+  
+  <!-- Mobile toggle for sidebar -->
+  <div class="toggle-sidebar" id="toggleSidebar">
+    <i class="fas fa-star"></i>
+  </div>
+  
+  <!-- Toast notification container -->
+  <div class="toast-container" id="toast-container"></div>
+  
+  <!-- Footer -->
+  <div class="footer">
+    Image Style Explorer Tool | Created by Vipul Anand [Web Developer] FOR <strong>harmonyplan.ca</strong>
+  </div>
+  
+  <script>
+    // Data Structure
+    const styleCategories = {
+      artistic: [
+        { name: "Studio Ghibli style", description: "Dreamy, painterly animation aesthetic with soft colors and whimsical elements" },
+        { name: "Pop Art", description: "Bold colors, comic-like patterns, Warhol-inspired with high contrast" },
+        { name: "Art Deco", description: "Geometric patterns, luxurious, 1920s glamour with symmetrical designs" },
+        { name: "Watercolor effect", description: "Soft, flowing, artistic washes with transparent color blending" },
+        { name: "Minimalist illustration", description: "Simple lines, limited color palette with focus on essential elements" },
+        { name: "Cubism-inspired", description: "Geometric fragmentation, multiple perspectives shown simultaneously" },
+        { name: "Vintage engraving", description: "Old-school etched line art look with fine cross-hatching" },
+        { name: "Impressionist", description: "Soft brush strokes, light-focused with emphasis on atmosphere" },
+        { name: "Bauhaus style", description: "Geometric, primary colors, functional with clean lines" },
+        { name: "Gothic/dark fantasy", description: "Dramatic shadows, ornate details with moody atmosphere" }
+      ],
+      photoDigital: [
+        { name: "Duotone effect", description: "Two-color gradient overlay creating dramatic, stylized images" },
+        { name: "Isometric illustration", description: "3D objects from a specific angle creating depth without perspective" },
+        { name: "Cinematic color grading", description: "Film-inspired color treatments with specific mood palettes" },
+        { name: "Cinemagraphs", description: "Still photos with minor repeated movement in specific areas" },
+        { name: "Low poly", description: "Geometric, triangular composition with faceted surfaces" },
+        { name: "Risograph effect", description: "Limited colors, slightly misaligned layers with grainy texture" },
+        { name: "Vaporwave aesthetic", description: "Retro computing, pink/blue/purple with 80s/90s nostalgia" },
+        { name: "Glitch art", description: "Digital distortion, pixelation, data corruption visual effects" },
+        { name: "Double exposure", description: "Overlaid images creating depth and visual meaning through combination" },
+        { name: "Flat design illustration", description: "2D, no shadows, bold colors with simplified forms" }
+      ],
+      webTrends: [
+        { name: "Glassmorphism", description: "Frosted glass effect with transparency and subtle blur" },
+        { name: "Neomorphism", description: "Soft, realistic UI elements with subtle shadows and raised surfaces" },
+        { name: "Clay/3D illustrations", description: "Rounded, dimensional objects with soft shadows" },
+        { name: "Line art animation", description: "Simple moving illustrations with continuous line drawing" },
+        { name: "Collage style", description: "Mixed media, layered composition combining different elements" },
+        { name: "Outlined illustrations", description: "Simple line drawings with minimal color accents" },
+        { name: "Grain/noise texture overlay", description: "Adds tactile quality and depth to digital images" },
+        { name: "Parallax scrolling effect", description: "Elements move at different speeds creating depth illusion" },
+        { name: "Gradient meshes", description: "Colorful, fluid background transitions with dimension" },
+        { name: "Custom cursor interactions", description: "Images that respond to mouse movement and hovering" }
+      ],
+      thematic: [
+        { name: "Editorial illustration", description: "Conceptual, story-focused imagery that conveys complex ideas" },
+        { name: "Infographic style", description: "Data visualization with imagery combining information and visuals" },
+        { name: "Technical blueprints", description: "Detailed schematic look with precise measurements and annotations" },
+        { name: "Hand-drawn/sketched effect", description: "Authentic, artisanal feel with visible stroke texture" },
+        { name: "Cut-paper/collage", description: "Textured, layered appearance with dimensional shadow effects" },
+        { name: "Islandscape", description: "Peaceful, isolated scene compositions with focused subject matter" },
+        { name: "Retro/vintage filter", description: "Nostalgic color treatments mimicking analog photography" },
+        { name: "Botanical illustration", description: "Detailed natural elements with scientific accuracy" },
+        { name: "Geometric abstraction", description: "Shapes forming recognizable objects through simplification" },
+        { name: "Pattern-based illustrations", description: "Repeating elements creating texture and visual rhythm" }
+      ]
+    };
+    
+    // DOM elements
+    const artisticStylesContainer = document.getElementById('artistic-styles');
+    const photoDigitalStylesContainer = document.getElementById('photo-digital-styles');
+    const webTrendsContainer = document.getElementById('web-trends');
+    const thematicStylesContainer = document.getElementById('thematic-styles');
+    const favoritesListContainer = document.getElementById('favorites-list');
+    const toastContainer = document.getElementById('toast-container');
+    const categoryHeaders = document.querySelectorAll('.category-header');
+    const toggleSidebar = document.getElementById('toggleSidebar');
+    const sidebar = document.querySelector('.sidebar');
+    const projectNameInput = document.getElementById('projectName');
+    const createProjectBtn = document.getElementById('createProject');
+    const activeProjectDisplay = document.getElementById('activeProjectDisplay');
+    const clearFavoritesBtn = document.getElementById('clearFavorites');
+    
+    // State management
+    let currentProject = localStorage.getItem('currentProject') || '';
+    let favorites = JSON.parse(localStorage.getItem('favorites')) || {};
+    
+    // Initial setup
+    function init() {
+      // Render all style categories
+      renderStyles(styleCategories.artistic, artisticStylesContainer);
+      renderStyles(styleCategories.photoDigital, photoDigitalStylesContainer);
+      renderStyles(styleCategories.webTrends, webTrendsContainer);
+      renderStyles(styleCategories.thematic, thematicStylesContainer);
+      
+      // Update project display
+      updateProjectDisplay();
+      
+      // Render favorites
+      renderFavorites();
+      
+      // Open first category by default
+      categoryHeaders[0].nextElementSibling.classList.add('active');
+      
+      // Event listeners for category headers
+      categoryHeaders.forEach(header => {
+        header.addEventListener('click', () => {
+          const content = header.nextElementSibling;
+          content.classList.toggle('active');
+          
+          // Toggle icon
+          const icon = header.querySelector('i');
+          icon.classList.toggle('fa-chevron-down');
+          icon.classList.toggle('fa-chevron-up');
+        });
+      });
+      
+      // Mobile sidebar toggle
+      toggleSidebar.addEventListener('click', () => {
+        sidebar.classList.toggle('active');
+      });
+      
+      // Project creation
+      createProjectBtn.addEventListener('click', createProject);
+      
+      // Clear favorites
+      clearFavoritesBtn.addEventListener('click', clearAllFavorites);
+    }
+    
+    // Render style cards
+    function renderStyles(styles, container) {
+      container.innerHTML = '';
+      
+      styles.forEach(style => {
+        const card = document.createElement('div');
+        card.className = 'style-card';
+        card.dataset.styleName = style.name;
+        
+        // Check if this style is a favorite for the current project
+        if (currentProject && favorites[currentProject] && 
+            favorites[currentProject].includes(style.name)) {
+          card.classList.add('favorite');
+        }
+        
+        card.innerHTML = `
+          <div class="style-header">
+            <span class="style-name">${style.name}</span>
+            <div class="style-actions">
+              <button class="action-btn copy-btn" title="Copy to clipboard">
+                <i class="far fa-copy"></i>
+              </button>
+              <button class="action-btn favorite-btn" title="Add to favorites">
+                <i class="far fa-star"></i>
+              </button>
+            </div>
+          </div>
+          <p>${style.description}</p>
+        `;
+        
+        // Add event listeners
+        const copyBtn = card.querySelector('.copy-btn');
+        const favoriteBtn = card.querySelector('.favorite-btn');
+        
+        copyBtn.addEventListener('click', () => {
+          copyToClipboard(style.name);
+        });
+        
+        favoriteBtn.addEventListener('click', () => {
+          toggleFavorite(style.name);
+          card.classList.toggle('favorite');
+        });
+        
+        container.appendChild(card);
+      });
+    }
+    
+    // Copy style name to clipboard
+    function copyToClipboard(text) {
+      navigator.clipboard.writeText(text).then(() => {
+        showToast(`"${text}" copied to clipboard!`, 'success');
+      }).catch(err => {
+        showToast('Failed to copy text', 'warning');
+      });
+    }
+    
+    // Toggle favorite status
+    function toggleFavorite(styleName) {
+      if (!currentProject) {
+        showToast('Please create a project first', 'warning');
+        return;
+      }
+      
+      if (!favorites[currentProject]) {
+        favorites[currentProject] = [];
+      }
+      
+      const index = favorites[currentProject].indexOf(styleName);
+      
+      if (index === -1) {
+        // Add to favorites
+        favorites[currentProject].push(styleName);
+        showToast(`Added "${styleName}" to favorites`, 'success');
+      } else {
+        // Remove from favorites
+        favorites[currentProject].splice(index, 1);
+        showToast(`Removed "${styleName}" from favorites`, 'info');
+      }
+      
+      // Save to localStorage
+      localStorage.setItem('favorites', JSON.stringify(favorites));
+      
+      // Update favorites display
+      renderFavorites();
+    }
+    
+    // Render favorites list
+    function renderFavorites() {
+      favoritesListContainer.innerHTML = '';
+      
+      if (!currentProject || !favorites[currentProject] || favorites[currentProject].length === 0) {
+        const emptyMessage = document.createElement('p');
+        emptyMessage.textContent = currentProject 
+          ? 'No favorites added yet' 
+          : 'Create a project to add favorites';
+        emptyMessage.style.opacity = '0.7';
+        emptyMessage.style.textAlign = 'center';
+        emptyMessage.style.padding = '15px 0';
+        favoritesListContainer.appendChild(emptyMessage);
+        return;
+      }
+      
+      favorites[currentProject].forEach(styleName => {
+        const item = document.createElement('div');
+        item.className = 'favorite-item';
+        
+        item.innerHTML = `
+          <span>${styleName}</span>
+          <button class="action-btn remove-favorite" title="Remove from favorites">
+            <i class="fas fa-times"></i>
+          </button>
+        `;
+        
+        const removeBtn = item.querySelector('.remove-favorite');
+        removeBtn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          toggleFavorite(styleName);
+          
+          // Also update any visible style cards
+          document.querySelectorAll(`.style-card[data-style-name="${styleName}"]`)
+            .forEach(card => card.classList.remove('favorite'));
+        });
+        
+        // Click on favorite item to copy
+        item.addEventListener('click', () => {
+          copyToClipboard(styleName);
+        });
+        
+        favoritesListContainer.appendChild(item);
+      });
+    }
+    
+    // Create new project
+    function createProject() {
+      const projectName = projectNameInput.value.trim();
+      
+      if (!projectName) {
+        showToast('Please enter a project name', 'warning');
+        return;
+      }
+      
+      currentProject = projectName;
+      localStorage.setItem('currentProject', currentProject);
+      
+      showToast(`Project "${projectName}" created`, 'success');
+      projectNameInput.value = '';
+      
+      updateProjectDisplay();
+      renderFavorites();
+      
+      // Re-render style cards to update favorite status
+      renderStyles(styleCategories.artistic, artisticStylesContainer);
+      renderStyles(styleCategories.photoDigital, photoDigitalStylesContainer);
+      renderStyles(styleCategories.webTrends, webTrendsContainer);
+      renderStyles(styleCategories.thematic, thematicStylesContainer);
+    }
+    
+    // Update project display
+    function updateProjectDisplay() {
+      if (currentProject) {
+        activeProjectDisplay.innerHTML = `
+          <div class="active-project">
+            <i class="fas fa-folder-open"></i> Active project: <strong>${currentProject}</strong>
+          </div>
+        `;
+      } else {
+        activeProjectDisplay.innerHTML = `
+          <div class="active-project" style="background: #fff3cd; color: #856404;">
+            <i class="fas fa-exclamation-triangle"></i> No active project
+          </div>
+        `;
+      }
+    }
+    
+    // Clear all favorites
+    function clearAllFavorites() {
+      if (!currentProject || !favorites[currentProject] || favorites[currentProject].length === 0) {
+        showToast('No favorites to clear', 'info');
+        return;
+      }
+      
+      const count = favorites[currentProject].length;
+      favorites[currentProject] = [];
+      localStorage.setItem('favorites', JSON.stringify(favorites));
+      
+      showToast(`Cleared ${count} favorites from project`, 'info');
+      renderFavorites();
+      
+      // Update style cards
+      document.querySelectorAll('.style-card.favorite')
+        .forEach(card => card.classList.remove('favorite'));
+    }
+    
+    // Toast notification
+    function showToast(message, type = 'info') {
+      const toast = document.createElement('div');
+      toast.className = `toast ${type}`;
+      toast.innerHTML = `
+        <span>${message}</span>
+        <button class="action-btn">
+          <i class="fas fa-times"></i>
+        </button>
+      `;
+      
+      // Close button
+      const closeBtn = toast.querySelector('.action-btn');
+      closeBtn.addEventListener('click', () => {
+        toast.remove();
+      });
+      
+      toastContainer.appendChild(toast);
+      
+      // Auto remove after 3 seconds
+      setTimeout(() => {
+        if (toast && toast.parentNode) {
+          toast.remove();
+        }
+      }, 3000);
+    }
+    
+    // Initialize the app
+    document.addEventListener('DOMContentLoaded', init);
+  </script>
+</body>
+</html>
