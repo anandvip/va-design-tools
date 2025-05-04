@@ -1,0 +1,1344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Numerology Energy Patterns Reference</title>
+    <style>
+        :root {
+            --primary: #4a1e9e;
+            --secondary: #7d4cdb;
+            --accent: #b794f4;
+            --bg-light: #f8f9fa;
+            --text: #2d3748;
+            --light-text: #4a5568;
+            --card-bg: #ffffff;
+            --border: #e2e8f0;
+            
+            /* Number-specific colors */
+            --color-1: #e53e3e;
+            --color-2: #4299e1;
+            --color-3: #f6e05e;
+            --color-4: #48bb78;
+            --color-5: #ed8936;
+            --color-6: #805ad5;
+            --color-7: #667eea;
+            --color-8: #d69e2e;
+            --color-9: #9f7aea;
+            --color-11: #fc8181;
+            --color-22: #90cdf4;
+            --color-33: #d6bcfa;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text);
+            background-color: var(--bg-light);
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 30px 0;
+            text-align: center;
+            border-radius: 0 0 15px 15px;
+            margin-bottom: 40px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        h1, h2, h3, h4 {
+            color: var(--primary);
+            margin-top: 0;
+        }
+
+        header h1, header h2 {
+            color: white;
+        }
+
+        .section {
+            background-color: var(--card-bg);
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 25px;
+            margin-bottom: 30px;
+        }
+
+        .section-title {
+            border-bottom: 2px solid var(--accent);
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .number-card {
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .number-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .number-card::before {
+            content: attr(data-number);
+            position: absolute;
+            top: -15px;
+            right: 10px;
+            font-size: 100px;
+            font-weight: bold;
+            opacity: 0.07;
+            z-index: 0;
+        }
+
+        .number-card h3 {
+            position: relative;
+            z-index: 1;
+            margin-bottom: 15px;
+        }
+
+        .number-card-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Number-specific styling */
+        .number-1 {
+            background-color: white;
+            border-left: 5px solid var(--color-1);
+        }
+        .number-1 h3 {
+            color: var(--color-1);
+        }
+
+        .number-2 {
+            background-color: white;
+            border-left: 5px solid var(--color-2);
+        }
+        .number-2 h3 {
+            color: var(--color-2);
+        }
+
+        .number-3 {
+            background-color: white;
+            border-left: 5px solid var(--color-3);
+        }
+        .number-3 h3 {
+            color: var(--color-3);
+        }
+
+        .number-4 {
+            background-color: white;
+            border-left: 5px solid var(--color-4);
+        }
+        .number-4 h3 {
+            color: var(--color-4);
+        }
+
+        .number-5 {
+            background-color: white;
+            border-left: 5px solid var(--color-5);
+        }
+        .number-5 h3 {
+            color: var(--color-5);
+        }
+
+        .number-6 {
+            background-color: white;
+            border-left: 5px solid var(--color-6);
+        }
+        .number-6 h3 {
+            color: var(--color-6);
+        }
+
+        .number-7 {
+            background-color: white;
+            border-left: 5px solid var(--color-7);
+        }
+        .number-7 h3 {
+            color: var(--color-7);
+        }
+
+        .number-8 {
+            background-color: white;
+            border-left: 5px solid var(--color-8);
+        }
+        .number-8 h3 {
+            color: var(--color-8);
+        }
+
+        .number-9 {
+            background-color: white;
+            border-left: 5px solid var(--color-9);
+        }
+        .number-9 h3 {
+            color: var(--color-9);
+        }
+
+        .number-11 {
+            background: linear-gradient(to right, rgba(252, 129, 129, 0.1), rgba(255, 255, 255, 0.9));
+            border-left: 5px solid var(--color-11);
+        }
+        .number-11 h3 {
+            color: var(--color-11);
+        }
+
+        .number-22 {
+            background: linear-gradient(to right, rgba(144, 205, 244, 0.1), rgba(255, 255, 255, 0.9));
+            border-left: 5px solid var(--color-22);
+        }
+        .number-22 h3 {
+            color: var(--color-22);
+        }
+
+        .number-33 {
+            background: linear-gradient(to right, rgba(214, 188, 250, 0.1), rgba(255, 255, 255, 0.9));
+            border-left: 5px solid var(--color-33);
+        }
+        .number-33 h3 {
+            color: var(--color-33);
+        }
+
+        .master-number {
+            background-color: rgba(255, 247, 237, 0.7);
+            border: 1px solid gold;
+        }
+
+        /* Tables */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        table, th, td {
+            border: 1px solid var(--border);
+        }
+
+        th, td {
+            padding: 12px 15px;
+            text-align: left;
+        }
+
+        th {
+            background-color: var(--secondary);
+            color: white;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        /* Correspondence grid */
+        .correspondence-grid {
+            display: grid;
+            grid-template-columns: 120px 1fr;
+            row-gap: 10px;
+            column-gap: 15px;
+            margin-top: 15px;
+        }
+
+        .correspondence-label {
+            font-weight: bold;
+            color: var(--primary);
+        }
+
+        /* Energy Pattern Visualization */
+        .energy-pattern {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 30px 0;
+        }
+
+        .resonance-diagram {
+            position: relative;
+            width: 400px;
+            height: 400px;
+        }
+
+        .circle {
+            position: absolute;
+            border-radius: 50%;
+            border: 2px solid rgba(74, 30, 158, 0.3);
+            transform: translate(-50%, -50%);
+            left: 50%;
+            top: 50%;
+        }
+
+        .number-point {
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: bold;
+            color: white;
+            transform: translate(-50%, -50%);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+
+        /* Tabs */
+        .tabs {
+            display: flex;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+
+        .tab-button {
+            padding: 10px 20px;
+            background-color: #f1f1f1;
+            border: none;
+            cursor: pointer;
+            margin-right: 5px;
+            border-radius: 5px 5px 0 0;
+            transition: all 0.3s ease;
+        }
+
+        .tab-button:hover {
+            background-color: #ddd;
+        }
+
+        .tab-button.active {
+            background-color: var(--secondary);
+            color: white;
+        }
+
+        .tab-content {
+            display: none;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 0 5px 5px 5px;
+            animation: fadeEffect 1s;
+        }
+
+        @keyframes fadeEffect {
+            from {opacity: 0;}
+            to {opacity: 1;}
+        }
+
+        /* Profile Section */
+        .profile-builder {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .profile-card {
+            flex: 1 1 300px;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            background-color: white;
+        }
+
+        .chart-container {
+            width: 100%;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: var(--primary);
+            color: white;
+            border-radius: 15px 15px 0 0;
+            margin-top: 40px;
+        }
+
+        @media (max-width: 768px) {
+            .grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .correspondence-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .resonance-diagram {
+                width: 300px;
+                height: 300px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Numerology Energy Patterns</h1>
+            <h2>A Comprehensive Reference Guide</h2>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="section">
+            <h2 class="section-title">Introduction to Numerological Energy Patterns</h2>
+            <p>Numerology is the study of the symbolism of numbers and how they influence human life. Each number carries a unique vibration and energy that affects different aspects of our existence. When combined, these numbers create complex energy patterns that can provide insight into personality traits, life challenges, and potential paths.</p>
+            <p>This reference guide explores both individual number energies and how they interact to form complete numerological profiles. Special attention is given to master numbers (11, 22, 33) which carry heightened spiritual potential and transformative power.</p>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title">Number Energy Profiles</h2>
+            <p>Each number resonates with specific qualities, strengths, challenges, and cosmic influences. Understanding these energetic signatures is essential for interpreting numerological profiles.</p>
+            
+            <div class="tabs">
+                <button class="tab-button active" onclick="openTab(event, 'SingleDigits')">Single Digits (1-9)</button>
+                <button class="tab-button" onclick="openTab(event, 'MasterNumbers')">Master Numbers</button>
+            </div>
+            
+            <div id="SingleDigits" class="tab-content" style="display: block;">
+                <div class="grid">
+                    <!-- Number 1 Card -->
+                    <div class="number-card number-1" data-number="1">
+                        <h3>Number 1: The Pioneer</h3>
+                        <div class="number-card-content">
+                            <p><strong>Core Energy:</strong> Leadership, independence, innovation, originality</p>
+                            <div class="correspondence-grid">
+                                <span class="correspondence-label">Element:</span> <span>Fire</span>
+                                <span class="correspondence-label">Planet:</span> <span>Sun</span>
+                                <span class="correspondence-label">Color:</span> <span>Red, Gold</span>
+                                <span class="correspondence-label">Gemstone:</span> <span>Ruby, Diamond</span>
+                                <span class="correspondence-label">Challenges:</span> <span>Ego, stubbornness, domineering attitude</span>
+                                <span class="correspondence-label">Growth Path:</span> <span>Developing cooperation, consideration for others</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Number 2 Card -->
+                    <div class="number-card number-2" data-number="2">
+                        <h3>Number 2: The Diplomat</h3>
+                        <div class="number-card-content">
+                            <p><strong>Core Energy:</strong> Cooperation, diplomacy, partnership, harmony, sensitivity</p>
+                            <div class="correspondence-grid">
+                                <span class="correspondence-label">Element:</span> <span>Water</span>
+                                <span class="correspondence-label">Planet:</span> <span>Moon</span>
+                                <span class="correspondence-label">Color:</span> <span>Blue, Silver</span>
+                                <span class="correspondence-label">Gemstone:</span> <span>Moonstone, Pearl</span>
+                                <span class="correspondence-label">Challenges:</span> <span>Oversensitivity, indecision, dependence</span>
+                                <span class="correspondence-label">Growth Path:</span> <span>Developing self-confidence, decision-making</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Number 3 Card -->
+                    <div class="number-card number-3" data-number="3">
+                        <h3>Number 3: The Creator</h3>
+                        <div class="number-card-content">
+                            <p><strong>Core Energy:</strong> Creativity, self-expression, joy, communication, optimism</p>
+                            <div class="correspondence-grid">
+                                <span class="correspondence-label">Element:</span> <span>Air</span>
+                                <span class="correspondence-label">Planet:</span> <span>Jupiter</span>
+                                <span class="correspondence-label">Color:</span> <span>Yellow, Gold</span>
+                                <span class="correspondence-label">Gemstone:</span> <span>Citrine, Topaz</span>
+                                <span class="correspondence-label">Challenges:</span> <span>Scattered energy, superficiality, exaggeration</span>
+                                <span class="correspondence-label">Growth Path:</span> <span>Developing focus, depth, and follow-through</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Number 4 Card -->
+                    <div class="number-card number-4" data-number="4">
+                        <h3>Number 4: The Builder</h3>
+                        <div class="number-card-content">
+                            <p><strong>Core Energy:</strong> Stability, order, structure, practicality, reliability</p>
+                            <div class="correspondence-grid">
+                                <span class="correspondence-label">Element:</span> <span>Earth</span>
+                                <span class="correspondence-label">Planet:</span> <span>Saturn, Uranus</span>
+                                <span class="correspondence-label">Color:</span> <span>Green, Brown</span>
+                                <span class="correspondence-label">Gemstone:</span> <span>Emerald, Jade</span>
+                                <span class="correspondence-label">Challenges:</span> <span>Rigidity, limitation, resistance to change</span>
+                                <span class="correspondence-label">Growth Path:</span> <span>Developing flexibility, openness to new ideas</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Number 5 Card -->
+                    <div class="number-card number-5" data-number="5">
+                        <h3>Number 5: The Freedom Seeker</h3>
+                        <div class="number-card-content">
+                            <p><strong>Core Energy:</strong> Freedom, change, adventure, versatility, curiosity</p>
+                            <div class="correspondence-grid">
+                                <span class="correspondence-label">Element:</span> <span>Air/Fire</span>
+                                <span class="correspondence-label">Planet:</span> <span>Mercury</span>
+                                <span class="correspondence-label">Color:</span> <span>Orange, Turquoise</span>
+                                <span class="correspondence-label">Gemstone:</span> <span>Amber, Aventurine</span>
+                                <span class="correspondence-label">Challenges:</span> <span>Restlessness, excess, lack of commitment</span>
+                                <span class="correspondence-label">Growth Path:</span> <span>Developing discipline, focus, and consistency</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Number 6 Card -->
+                    <div class="number-card number-6" data-number="6">
+                        <h3>Number 6: The Nurturer</h3>
+                        <div class="number-card-content">
+                            <p><strong>Core Energy:</strong> Responsibility, nurturing, harmony, service, balance</p>
+                            <div class="correspondence-grid">
+                                <span class="correspondence-label">Element:</span> <span>Earth/Water</span>
+                                <span class="correspondence-label">Planet:</span> <span>Venus</span>
+                                <span class="correspondence-label">Color:</span> <span>Purple, Pink</span>
+                                <span class="correspondence-label">Gemstone:</span> <span>Amethyst, Rose Quartz</span>
+                                <span class="correspondence-label">Challenges:</span> <span>Perfectionism, martyrdom, excessive worry</span>
+                                <span class="correspondence-label">Growth Path:</span> <span>Developing self-care, boundaries, delegation</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Number 7 Card -->
+                    <div class="number-card number-7" data-number="7">
+                        <h3>Number 7: The Seeker</h3>
+                        <div class="number-card-content">
+                            <p><strong>Core Energy:</strong> Analysis, wisdom, spirituality, introspection, research</p>
+                            <div class="correspondence-grid">
+                                <span class="correspondence-label">Element:</span> <span>Water/Air</span>
+                                <span class="correspondence-label">Planet:</span> <span>Neptune</span>
+                                <span class="correspondence-label">Color:</span> <span>Deep Blue, Purple</span>
+                                <span class="correspondence-label">Gemstone:</span> <span>Sapphire, Lapis Lazuli</span>
+                                <span class="correspondence-label">Challenges:</span> <span>Isolation, overthinking, perfectionism</span>
+                                <span class="correspondence-label">Growth Path:</span> <span>Developing practical application, connection</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Number 8 Card -->
+                    <div class="number-card number-8" data-number="8">
+                        <h3>Number 8: The Achiever</h3>
+                        <div class="number-card-content">
+                            <p><strong>Core Energy:</strong> Achievement, authority, material success, power, organization</p>
+                            <div class="correspondence-grid">
+                                <span class="correspondence-label">Element:</span> <span>Earth/Fire</span>
+                                <span class="correspondence-label">Planet:</span> <span>Saturn</span>
+                                <span class="correspondence-label">Color:</span> <span>Gold, Royal Blue</span>
+                                <span class="correspondence-label">Gemstone:</span> <span>Pyrite, Citrine</span>
+                                <span class="correspondence-label">Challenges:</span> <span>Materialism, workaholism, power struggles</span>
+                                <span class="correspondence-label">Growth Path:</span> <span>Developing balance, generosity, spiritual values</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Number 9 Card -->
+                    <div class="number-card number-9" data-number="9">
+                        <h3>Number 9: The Humanitarian</h3>
+                        <div class="number-card-content">
+                            <p><strong>Core Energy:</strong> Completion, compassion, universal love, wisdom, selflessness</p>
+                            <div class="correspondence-grid">
+                                <span class="correspondence-label">Element:</span> <span>All elements</span>
+                                <span class="correspondence-label">Planet:</span> <span>Mars</span>
+                                <span class="correspondence-label">Color:</span> <span>Violet, White</span>
+                                <span class="correspondence-label">Gemstone:</span> <span>Amethyst, Clear Quartz</span>
+                                <span class="correspondence-label">Challenges:</span> <span>Martyrdom, emotional detachment, judgment</span>
+                                <span class="correspondence-label">Growth Path:</span> <span>Developing boundaries, personal fulfillment</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="MasterNumbers" class="tab-content">
+                <p>Master numbers are not reduced to a single digit in numerology. They represent heightened spiritual potential and carry special significance. They often bring both greater challenges and greater rewards.</p>
+                
+                <div class="grid">
+                    <!-- Master Number 11 Card -->
+                    <div class="number-card number-11 master-number" data-number="11">
+                        <h3>Master Number 11: The Intuitive</h3>
+                        <div class="number-card-content">
+                            <p><strong>Core Energy:</strong> Spiritual insight, intuition, illumination, inspiration, visionary</p>
+                            <div class="correspondence-grid">
+                                <span class="correspondence-label">Element:</span> <span>Light</span>
+                                <span class="correspondence-label">Planet:</span> <span>Moon/Neptune</span>
+                                <span class="correspondence-label">Color:</span> <span>Electric Blue, Silver</span>
+                                <span class="correspondence-label">Gemstone:</span> <span>Labradorite, Moonstone</span>
+                                <span class="correspondence-label">Challenges:</span> <span>Nervous tension, impracticality, extreme sensitivity</span>
+                                <span class="correspondence-label">Growth Path:</span> <span>Grounding spiritual insights into practical service</span>
+                            </div>
+                            <p><strong>Special Qualities:</strong> Master number 11 combines the qualities of double 1 with the partnership energy of 2 (1+1=2). It represents the channel between the subconscious and the conscious mind, offering intuitive insights and spiritual vision beyond ordinary awareness.</p>
+                            <p><strong>Life Purpose:</strong> To serve as a spiritual messenger, bringing higher wisdom into practical manifestation. 11s often serve as teachers, counselors, and inspirational figures who bridge spiritual and material worlds.</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Master Number 22 Card -->
+                    <div class="number-card number-22 master-number" data-number="22">
+                        <h3>Master Number 22: The Master Builder</h3>
+                        <div class="number-card-content">
+                            <p><strong>Core Energy:</strong> Practical idealism, large-scale manifestation, material accomplishment of spiritual vision</p>
+                            <div class="correspondence-grid">
+                                <span class="correspondence-label">Element:</span> <span>Earth/Ether</span>
+                                <span class="correspondence-label">Planet:</span> <span>Saturn/Jupiter</span>
+                                <span class="correspondence-label">Color:</span> <span>Royal Blue, Gold</span>
+                                <span class="correspondence-label">Gemstone:</span> <span>Lapis Lazuli, Pyrite</span>
+                                <span class="correspondence-label">Challenges:</span> <span>Overwhelm, perfectionism, unfulfilled potential</span>
+                                <span class="correspondence-label">Growth Path:</span> <span>Taking practical action, trusting the process</span>
+                            </div>
+                            <p><strong>Special Qualities:</strong> Master number 22 combines the practical foundation energy of 4 (2+2=4) with the power of double 2 (cooperation, diplomacy). It represents the ability to bring dreams into reality on a grand scale, turning the most ambitious visions into concrete achievements.</p>
+                            <p><strong>Life Purpose:</strong> To create large-scale structures, systems, or organizations that benefit many people. 22s often become architects (literal or figurative) of significant works that have lasting impact across generations.</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Master Number 33 Card -->
+                    <div class="number-card number-33 master-number" data-number="33">
+                        <h3>Master Number 33: The Master Teacher</h3>
+                        <div class="number-card-content">
+                            <p><strong>Core Energy:</strong> Compassionate service, spiritual teaching, healing, nurturing humanity</p>
+                            <div class="correspondence-grid">
+                                <span class="correspondence-label">Element:</span> <span>All elements in harmony</span>
+                                <span class="correspondence-label">Planet:</span> <span>Venus/Neptune</span>
+                                <span class="correspondence-label">Color:</span> <span>Pink, Violet, Gold</span>
+                                <span class="correspondence-label">Gemstone:</span> <span>Rose Quartz, Amethyst</span>
+                                <span class="correspondence-label">Challenges:</span> <span>Martyrdom, burnout, unrealistic expectations</span>
+                                <span class="correspondence-label">Growth Path:</span> <span>Self-nurturing, setting healthy boundaries</span>
+                            </div>
+                            <p><strong>Special Qualities:</strong> Master number 33 combines the creative expression of 3 with the nurturing responsibility of 6 (3+3=6). It represents the highest form of spiritual teaching through example, embodying unconditional love and selfless service to uplift humanity.</p>
+                            <p><strong>Life Purpose:</strong> To heal, teach, and inspire through loving service that uplifts the collective consciousness. 33s often become influential teachers, healers, and spiritual guides whose work touches many lives through compassionate wisdom.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2 class="section-title">Numerological Resonance Patterns</h2>
+            <p>When multiple numbers appear in a person's numerological profile, they create unique energy patterns. Understanding these resonance patterns is key to gaining deeper insight into how different aspects of personality and life purpose interact.</p>
+            
+            <h3>Sample Energy Pattern Visualization</h3>
+            <p>The diagram below illustrates how different numbers in a profile interact to create a complete energetic signature. Each number's position and size represents its influence and relationship to other numbers.</p>
+            
+            <div class="energy-pattern">
+                <div class="resonance-diagram">
+                    <!-- Concentric circles -->
+                    <div class="circle" style="width: 360px; height: 360px;"></div>
+                    <div class="circle" style="width: 280px; height: 280px;"></div>
+                    <div class="circle" style="width: 200px; height: 200px;"></div>
+                    <div class="circle" style="width: 120px; height: 120px;"></div>
+                    
+                    <!-- Number points positioned strategically -->
+                    <div class="number-point" style="left: 50%; top: 10%; background-color: var(--color-8);">8</div>
+                    <div class="number-point" style="left: 85%; top: 30%; background-color: var(--color-6);">6</div>
+                    <div class="number-point" style="left: 90%; top: 70%; background-color: var(--color-5);">5</div>
+                    <div class="number-point" style="left: 65%; top: 90%; background-color: var(--color-1);">1</div>
+                    <div class="number-point" style="left: 30%; top: 90%; background-color: var(--color-7);">7</div>
+                    <div class="number-point" style="left: 10%; top: 70%; background-color: var(--color-3);">3</div>
+                    <div class="number-point" style="left: 15%; top: 30%; background-color: var(--color-4);">4</div>
+                    <div class="number-point" style="left: 50%; top: 50%; background-color: var(--color-11);">11</div>
+                </div>
+            </div>
+            
+            <h3>Interpreting Number Combinations</h3>
+            <p>Certain number combinations create particularly powerful resonance patterns in a numerological profile. Understanding these combinations helps reveal the core dynamics at play.</p>
+            
+            <table>
+                <tr>
+                    <th>Combination</th>
+                    <th>Synergy</th>
+                    <th>Potential</th>
+                </tr>
+                <tr>
+                    <td>8 + 6</td>
+                    <td>Material success combined with responsibility and service</td>
+                    <td>Building successful enterprises that serve others and create harmony</td>
+                </tr>
+                <tr>
+                    <td>8 + 5</td>
+                    <td>Achievement energy with freedom-seeking versatility</td>
+                    <td>Creating innovative business models or unconventional paths to success</td>
+                </tr>
+                <tr>
+                    <td>8 + 1</td>
+                    <td>Authority with leadership and independence</td>
+                    <td>Strong executive abilities with innovative approaches</td>
+                </tr>
+                <tr>
+                    <td>7 + 5</td>
+                    <td>Spiritual analysis with freedom and adventure</td>
+                    <td>Exploring diverse spiritual paths; researching without dogma</td>
+                </tr>
+                <tr>
+                    <td>7 + 3</td>
+                    <td>Introspection with creative expression</td>
+                    <td>Communicating spiritual insights through creative mediums</td>
+                </tr>
+                <tr>
+                    <td>6 + 3</td>
+                    <td>Nurturing responsibility with creative expression</td>
+                    <td>Teaching or healing through creative approaches</td>
+                </tr>
+                <tr>
+                    <td>4 + 8</td>
+                    <td>Practical foundation with achievement orientation</td>
+                    <td>Building lasting, structured success through methodical approaches</td>
+                </tr>
+                <tr>
+                    <td>11 + 8</td>
+                    <td>Spiritual vision with material manifestation ability</td>
+                    <td>Bringing higher insights into successful practical application</td>
+                </tr>
+                <tr>
+                    <td>11 + 7</td>
+                    <td>Intuition enhanced by analytical thinking</td>
+                    <td>Deep spiritual research and profound intuitive insights</td>
+                </tr>
+                <tr>
+                    <td>11 + 3</td>
+                    <td>Spiritual insight with creative expression</td>
+                    <td>Channeling higher wisdom through art, writing, or speaking</td>
+                </tr>
+            </table>
+            
+            <h3>Balancing Energies in a Numerology Profile</h3>
+            <p>When certain numbers are dominant or missing in a profile, specific balancing energies can help create greater harmony and wholeness:</p>
+            
+            <table>
+                <tr>
+                    <th>If Dominant</th>
+                    <th>Balancing Energy</th>
+                    <th>Balancing Practice</th>
+                </tr>
+                <tr>
+                    <td>8 (Achievement)</td>
+                    <td>6 (Nurturing) and 9 (Completion)</td>
+                    <td>Service-oriented activities, philanthropy, finding meaning beyond material success</td>
+                </tr>
+                <tr>
+                    <td>5 (Freedom)</td>
+                    <td>4 (Structure) and 7 (Reflection)</td>
+                    <td>Creating routines, mindfulness practices, journaling, reflection before action</td>
+                </tr>
+                <tr>
+                    <td>4 (Structure)</td>
+                    <td>5 (Freedom) and 3 (Creativity)</td>
+                    <td>Spontaneous activities, creative expression, trying new approaches</td>
+                </tr>
+                <tr>
+                    <td>1 (Leadership)</td>
+                    <td>2 (Cooperation) and 6 (Service)</td>
+                    <td>Collaborative projects, listening practices, supportive relationships</td>
+                </tr>
+                <tr>
+                    <td>7 (Analysis)</td>
+                    <td>3 (Expression) and 5 (Experience)</td>
+                    <td>Creative communication, hands-on learning, practical application of knowledge</td>
+                </tr>
+                <tr>
+                    <td>Master Number 11</td>
+                    <td>4 (Grounding) and 8 (Manifestation)</td>
+                    <td>Practical implementation of intuitive insights, structured meditation</td>
+                </tr>
+            </table>
+        </div>
+        
+        <div class="section">
+            <h2 class="section-title">Master Number Exploration</h2>
+            <p>Master numbers represent heightened spiritual potential and carry special significance in numerology. This section explores the deeper dimensions of these powerful numbers.</p>
+            
+            <h3>The Nature of Master Numbers</h3>
+            <p>Master numbers (11, 22, 33) are not reduced to single digits because they represent a higher octave of energy compared to their reduced counterparts (2, 4, 6). They contain the qualities of their reduced number but with amplified spiritual potential and greater challenges.</p>
+            
+            <div class="grid">
+                <div class="number-card number-11 master-number" data-number="11">
+                    <h3>Master Number 11: Deeper Dimensions</h3>
+                    <div class="number-card-content">
+                        <p><strong>Spiritual Function:</strong> Master number 11 serves as a bridge between the mundane and spiritual realms. It represents the intuitive channel through which higher wisdom flows into consciousness.</p>
+                        <p><strong>Activation:</strong> When fully activated, the 11 energy manifests as:</p>
+                        <ul>
+                            <li>Heightened intuitive awareness that transcends logical reasoning</li>
+                            <li>Ability to inspire others through visionary insights</li>
+                            <li>Psychic or empathic sensitivity to subtle energies</li>
+                            <li>Capacity to manifest thoughts rapidly through alignment with universal energy</li>
+                        </ul>
+                        <p><strong>Shadow Aspects:</strong> When unbalanced, the 11 energy can manifest as:</p>
+                        <ul>
+                            <li>Nervous tension and anxiety from heightened sensitivity</li>
+                            <li>Escapism or impracticality in everyday matters</li>
+                            <li>Difficulty distinguishing between intuition and fear</li>
+                            <li>Feeling overwhelmed by spiritual responsibility</li>
+                        </ul>
+                        <p><strong>Integration Practices:</strong> To harness the full potential of 11 energy:</p>
+                        <ul>
+                            <li>Regular grounding practices (connecting with nature, physical exercise)</li>
+                            <li>Journaling to distinguish between intuitive insights and mental chatter</li>
+                            <li>Creative expression of spiritual insights</li>
+                            <li>Balancing spiritual pursuits with practical action</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="number-card number-22 master-number" data-number="22">
+                    <h3>Master Number 22: Deeper Dimensions</h3>
+                    <div class="number-card-content">
+                        <p><strong>Spiritual Function:</strong> Master number 22 serves as the transformer of vision into reality. It represents the practical application of spiritual principles on a large scale.</p>
+                        <p><strong>Activation:</strong> When fully activated, the 22 energy manifests as:</p>
+                        <ul>
+                            <li>Ability to manifest ambitious visions into concrete reality</li>
+                            <li>Talent for creating structures and systems that benefit many people</li>
+                            <li>Capacity to organize resources and people toward a common vision</li>
+                            <li>Balanced integration of spiritual insight with practical know-how</li>
+                        </ul>
+                        <p><strong>Shadow Aspects:</strong> When unbalanced, the 22 energy can manifest as:</p>
+                        <ul>
+                            <li>Feeling overwhelmed by potential and unable to take action</li>
+                            <li>Perfectionism that prevents completion of projects</li>
+                            <li>Using power for personal gain rather than collective benefit</li>
+                            <li>Burnout from taking on too much responsibility</li>
+                        </ul>
+                        <p><strong>Integration Practices:</strong> To harness the full potential of 22 energy:</p>
+                        <ul>
+                            <li>Breaking large visions into manageable, sequential steps</li>
+                            <li>Collaboration with others who complement your skills</li>
+                            <li>Regular periods of rest and rejuvenation</li>
+                            <li>Celebrating small victories along the path to larger achievements</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="number-card number-33 master-number" data-number="33">
+                    <h3>Master Number 33: Deeper Dimensions</h3>
+                    <div class="number-card-content">
+                        <p><strong>Spiritual Function:</strong> Master number 33 serves as the embodiment of compassionate wisdom. It represents the highest expression of nurturing service to humanity.</p>
+                        <p><strong>Activation:</strong> When fully activated, the 33 energy manifests as:</p>
+                        <ul>
+                            <li>Ability to heal through presence and unconditional love</li>
+                            <li>Teaching by example rather than just through words</li>
+                            <li>Capacity to elevate others' consciousness through compassionate interaction</li>
+                            <li>Balance of spiritual wisdom with practical nurturing</li>
+                        </ul>
+                        <p><strong>Shadow Aspects:</strong> When unbalanced, the 33 energy can manifest as:</p>
+                        <ul>
+                            <li>Martyrdom or self-sacrifice to an unhealthy degree</li>
+                            <li>Enabling dependencies in others rather than empowering them</li>
+                            <li>Setting impossible standards of spiritual perfection</li>
+                            <li>Neglecting personal needs while serving others</li>
+                        </ul>
+                        <p><strong>Integration Practices:</strong> To harness the full potential of 33 energy:</p>
+                        <ul>
+                            <li>Self-care practices that model healthy boundaries</li>
+                            <li>Discernment in choosing where to focus healing energy</li>
+                            <li>Recognizing that personal fulfillment enhances service to others</li>
+                            <li>Creating sustainable service models rather than depleting oneself</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <h3>Recognizing the Presence of Master Numbers</h3>
+            <p>Master numbers can appear in various positions within a numerological profile. Their influence varies depending on where they appear:</p>
+            
+            <table>
+                <tr>
+                    <th>Position</th>
+                    <th>Influence</th>
+                    <th>Manifestation</th>
+                </tr>
+                <tr>
+                    <td>Life Path</td>
+                    <td>Central life purpose and lesson</td>
+                    <td>Core spiritual mission that defines the entire life journey</td>
+                </tr>
+                <tr>
+                    <td>Expression</td>
+                    <td>How talents and abilities manifest</td>
+                    <td>Enhanced capacity to communicate and embody spiritual principles</td>
+                </tr>
+                <tr>
+                    <td>Soul Urge</td>
+                    <td>Inner desires and motivations</td>
+                    <td>Deep spiritual yearning that drives decisions and priorities</td>
+                </tr>
+                <tr>
+                    <td>Personal Year</td>
+                    <td>Temporary influence for a specific year</td>
+                    <td>Year of significant spiritual activation and potential breakthrough</td>
+                </tr>
+                <tr>
+                    <td>Challenge Number</td>
+                    <td>Spiritual tests to overcome</td>
+                    <td>Intensified lessons that lead to accelerated growth when mastered</td>
+                </tr>
+            </table>
+            
+            <h3>Master Numbers and Life Transitions</h3>
+            <p>Master numbers often become most active during significant life transitions or spiritual awakening periods. These numbers can remain dormant until triggered by life circumstances that call for their higher vibration.</p>
+            
+            <p>Common activation periods include:</p>
+            <ul>
+                <li>Mid-life transitions (ages 35-45)</li>
+                <li>Major career changes or shifts in purpose</li>
+                <li>After profound loss or transformation experiences</li>
+                <li>During personal year cycles that match or complement the master number</li>
+                <li>Following dedicated spiritual practice or inner work</li>
+            </ul>
+        </div>
+        
+        <div class="section">
+            <h2 class="section-title">Profile Analysis: A Case Study</h2>
+            <p>Below is a sample numerological profile analysis demonstrating how different numbers interact to create a complete energy pattern.</p>
+            
+            <div class="profile-builder">
+                <div class="profile-card">
+                    <h3>Sample Profile: 8-6-5-1-7-1-4-0-4-4-3</h3>
+                    <p><strong>Life Path 8:</strong> Core energy oriented toward achievement, organization, and mastery of the material world.</p>
+                    <p><strong>Expression 6:</strong> Talents expressed through responsibility, nurturing, and service to others.</p>
+                    <p><strong>Soul Urge 5:</strong> Inner desire for freedom, adventure, and variety of experiences.</p>
+                    <p><strong>Personality 1:</strong> Outward presentation of leadership, independence, and pioneering qualities.</p>
+                    <p><strong>Birthday 7:</strong> Special gift for analysis, wisdom, and spiritual understanding.</p>
+                    <p><strong>Personal Year 1:</strong> Currently in a cycle of new beginnings and initiatives.</p>
+                    <p><strong>Challenge Numbers 4-0-4-4:</strong> Life lessons involve building stability, patience, and practical foundations.</p>
+                    <p><strong>Phone Number 3:</strong> Environmental influence of creativity and self-expression.</p>
+                </div>
+                
+                <div class="profile-card">
+                    <h3>Energy Pattern Analysis</h3>
+                    <p><strong>Dominant Energies:</strong> The abundance of 4 energy (appearing three times) creates a strong foundation for the ambitious 8 energy to build upon.</p>
+                    <p><strong>Key Polarities:</strong> The achievement-oriented 8 balances with the service-oriented 6, while the freedom-seeking 5 contrasts with the stability-focused 4.</p>
+                    <p><strong>Missing Energies:</strong> Numbers 2 (cooperation) and 9 (completion) are absent, suggesting areas for development.</p>
+                    <p><strong>Integration Path:</strong> Learning to build material success (8) through service to others (6), while incorporating enough variety (5) and independence (1) to satisfy inner needs. The analytical mind (7) helps discern the most effective structures (4) for accomplishing goals.</p>
+                    <p><strong>Potential Challenges:</strong> May struggle between desire for achievement (8) and freedom (5), or between taking charge (1) and serving others (6).</p>
+                    <p><strong>Collective Resonance:</strong> The sum of all numbers (43 → 7) indicates that the overall vibration of this profile resonates with spirituality, analysis, and wisdom-seeking.</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2 class="section-title">Designing with Numerological Energy</h2>
+            <p>Numerological principles can be incorporated into design to create environments, websites, or tools that resonate with specific energy patterns. This section explores how to translate numerical vibrations into visual and interactive elements.</p>
+            
+            <h3>Color Correspondence</h3>
+            <p>Each number resonates with specific color frequencies that can be used in design:</p>
+            
+            <div class="grid">
+                <div style="background-color: #fff; padding: 15px; border-radius: 10px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
+                    <h4 style="color: var(--color-1);">Number 1: Red, Gold</h4>
+                    <div style="display: flex; gap: 10px; margin-top: 10px;">
+                        <div style="background-color: #e53e3e; width: 50px; height: 50px; border-radius: 5px;"></div>
+                        <div style="background-color: #d69e2e; width: 50px; height: 50px; border-radius: 5px;"></div>
+                    </div>
+                    <p>Use for sections emphasizing leadership, innovation, and originality.</p>
+                </div>
+                
+                <div style="background-color: #fff; padding: 15px; border-radius: 10px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
+                    <h4 style="color: var(--color-2);">Number 2: Blue, Silver</h4>
+                    <div style="display: flex; gap: 10px; margin-top: 10px;">
+                        <div style="background-color: #4299e1; width: 50px; height: 50px; border-radius: 5px;"></div>
+                        <div style="background-color: #a0aec0; width: 50px; height: 50px; border-radius: 5px;"></div>
+                    </div>
+                    <p>Use for sections emphasizing harmony, cooperation, and partnership.</p>
+                </div>
+                
+                <div style="background-color: #fff; padding: 15px; border-radius: 10px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
+                    <h4 style="color: var(--color-3);">Number 3: Yellow, Gold</h4>
+                    <div style="display: flex; gap: 10px; margin-top: 10px;">
+                        <div style="background-color: #f6e05e; width: 50px; height: 50px; border-radius: 5px;"></div>
+                        <div style="background-color: #d69e2e; width: 50px; height: 50px; border-radius: 5px;"></div>
+                    </div>
+                    <p>Use for sections emphasizing creativity, expression, and optimism.</p>
+                </div>
+                
+                <div style="background-color: #fff; padding: 15px; border-radius: 10px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
+                    <h4 style="color: var(--color-4);">Number 4: Green, Brown</h4>
+                    <div style="display: flex; gap: 10px; margin-top: 10px;">
+                        <div style="background-color: #48bb78; width: 50px; height: 50px; border-radius: 5px;"></div>
+                        <div style="background-color: #7b341e; width: 50px; height: 50px; border-radius: 5px;"></div>
+                    </div>
+                    <p>Use for sections emphasizing stability, structure, and reliability.</p>
+                </div>
+                
+                <div style="background-color: #fff; padding: 15px; border-radius: 10px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
+                    <h4 style="color: var(--color-5);">Number 5: Orange, Turquoise</h4>
+                    <div style="display: flex; gap: 10px; margin-top: 10px;">
+                        <div style="background-color: #ed8936; width: 50px; height: 50px; border-radius: 5px;"></div>
+                        <div style="background-color: #38b2ac; width: 50px; height: 50px; border-radius: 5px;"></div>
+                    </div>
+                    <p>Use for sections emphasizing freedom, change, and versatility.</p>
+                </div>
+                
+                <div style="background-color: #fff; padding: 15px; border-radius: 10px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
+                    <h4 style="color: var(--color-6);">Number 6: Purple, Pink</h4>
+                    <div style="display: flex; gap: 10px; margin-top: 10px;">
+                        <div style="background-color: #805ad5; width: 50px; height: 50px; border-radius: 5px;"></div>
+                        <div style="background-color: #ed64a6; width: 50px; height: 50px; border-radius: 5px;"></div>
+                    </div>
+                    <p>Use for sections emphasizing care, responsibility, and harmony.</p>
+                </div>
+                
+                <div style="background-color: #fff; padding: 15px; border-radius: 10px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
+                    <h4 style="color: var(--color-7);">Number 7: Deep Blue, Purple</h4>
+                    <div style="display: flex; gap: 10px; margin-top: 10px;">
+                        <div style="background-color: #2b6cb0; width: 50px; height: 50px; border-radius: 5px;"></div>
+                        <div style="background-color: #6b46c1; width: 50px; height: 50px; border-radius: 5px;"></div>
+                    </div>
+                    <p>Use for sections emphasizing wisdom, analysis, and spirituality.</p>
+                </div>
+                
+                <div style="background-color: #fff; padding: 15px; border-radius: 10px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
+                    <h4 style="color: var(--color-8);">Number 8: Gold, Royal Blue</h4>
+                    <div style="display: flex; gap: 10px; margin-top: 10px;">
+                        <div style="background-color: #d69e2e; width: 50px; height: 50px; border-radius: 5px;"></div>
+                        <div style="background-color: #2c5282; width: 50px; height: 50px; border-radius: 5px;"></div>
+                    </div>
+                    <p>Use for sections emphasizing achievement, authority, and manifestation.</p>
+                </div>
+                
+                <div style="background-color: #fff; padding: 15px; border-radius: 10px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
+                    <h4 style="color: var(--color-9);">Number 9: Violet, White</h4>
+                    <div style="display: flex; gap: 10px; margin-top: 10px;">
+                        <div style="background-color: #9f7aea; width: 50px; height: 50px; border-radius: 5px;"></div>
+                        <div style="background-color: #fff; width: 50px; height: 50px; border-radius: 5px; border: 1px solid #e2e8f0;"></div>
+                    </div>
+                    <p>Use for sections emphasizing completion, compassion, and universal perspective.</p>
+                </div>
+                
+                <div style="background-color: #fff; padding: 15px; border-radius: 10px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
+                    <h4 style="color: var(--color-11);">Master Number 11: Electric Blue, Silver</h4>
+                    <div style="display: flex; gap: 10px; margin-top: 10px;">
+                        <div style="background-color: #63b3ed; width: 50px; height: 50px; border-radius: 5px;"></div>
+                        <div style="background-color: #cbd5e0; width: 50px; height: 50px; border-radius: 5px;"></div>
+                    </div>
+                    <p>Use for sections emphasizing intuition, inspiration, and spiritual insight.</p>
+                </div>
+            </div>
+            
+            <h3>Shape and Form Correspondences</h3>
+            <p>Geometric shapes and design elements can also be used to express numerical energies:</p>
+            
+            <table>
+                <tr>
+                    <th>Number</th>
+                    <th>Geometric Forms</th>
+                    <th>Design Elements</th>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>Vertical lines, triangles pointing upward</td>
+                    <td>Clean, minimal layouts with clear focal points</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>Curves, circles, horizontal lines</td>
+                    <td>Balanced layouts, symmetry, gentle transitions</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>Triangles, spirals, flowing shapes</td>
+                    <td>Playful elements, varied colors, artistic touches</td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>Squares, rectangles, grid patterns</td>
+                    <td>Structured layouts, clear navigation, stability</td>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td>Pentagons, stars, asymmetrical shapes</td>
+                    <td>Dynamic elements, interactive features, movement</td>
+                </tr>
+                <tr>
+                    <td>6</td>
+                    <td>Hexagons, rounded forms, flower patterns</td>
+                    <td>Harmonious balance, nurturing imagery, approachable interfaces</td>
+                </tr>
+                <tr>
+                    <td>7</td>
+                    <td>Heptagons, zigzag patterns, depth layers</td>
+                    <td>Thoughtful organization, contemplative spaces, subtle complexity</td>
+                </tr>
+                <tr>
+                    <td>8</td>
+                    <td>Octagons, infinity symbols, structured patterns</td>
+                    <td>Professional elements, achievement-oriented imagery, authority</td>
+                </tr>
+                <tr>
+                    <td>9</td>
+                    <td>Enneagons, circles, flowing forms</td>
+                    <td>Inclusive design, universal symbols, completeness</td>
+                </tr>
+                <tr>
+                    <td>11</td>
+                    <td>Parallel lines, ethereal patterns, light rays</td>
+                    <td>Intuitive navigation, inspirational elements, visionary imagery</td>
+                </tr>
+            </table>
+            
+            <h3>Sound and Music Correspondences</h3>
+            <p>Each number also resonates with specific sound frequencies and musical qualities that can enhance numerological resonance:</p>
+            
+            <table>
+                <tr>
+                    <th>Number</th>
+                    <th>Musical Quality</th>
+                    <th>Sound Integration</th>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>Bold, assertive tones; clear melodies</td>
+                    <td>Use strong, single tones; brass instruments; C major</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>Harmonious duets; gentle flowing melodies</td>
+                    <td>Peaceful duets; string instruments; D minor</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>Upbeat, creative compositions; varied patterns</td>
+                    <td>Playful woodwinds; improvisation; E major</td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>Structured, rhythmic patterns; stable rhythm</td>
+                    <td>Steady percussion; metronome-like cadence; F major</td>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td>Dynamic, changing rhythms; adventurous tones</td>
+                    <td>Jazz-like freedom; saxophone; G major</td>
+                </tr>
+                <tr>
+                    <td>6</td>
+                    <td>Harmonious, nurturing sounds; balanced composition</td>
+                    <td>Harp-like arpeggios; maternal lullabies; A minor</td>
+                </tr>
+                <tr>
+                    <td>7</td>
+                    <td>Contemplative, mystical tones; introspective quality</td>
+                    <td>Meditative tones; flute; spacious silences; B minor</td>
+                </tr>
+                <tr>
+                    <td>8</td>
+                    <td>Powerful, abundant sound; structured complexity</td>
+                    <td>Orchestral fullness; bass-driven; wealthy layers; C# minor</td>
+                </tr>
+                <tr>
+                    <td>9</td>
+                    <td>Universal, inclusive harmonies; resolution tones</td>
+                    <td>World music influences; completion cadences; F# minor</td>
+                </tr>
+                <tr>
+                    <td>11</td>
+                    <td>Elevated, ethereal sounds; inspirational quality</td>
+                    <td>Crystal bowls; angelic choir effects; overtone-rich</td>
+                </tr>
+            </table>
+        </div>
+        
+        <div class="section">
+            <h2 class="section-title">Tool Development Guidelines</h2>
+            <p>When developing a numerological tool based on these principles, consider the following best practices:</p>
+            
+            <ol>
+                <li><strong>User-Centered Design:</strong> Focus on creating an intuitive experience that guides users through the complexity of numerology without overwhelming them.</li>
+                <li><strong>Energy-Aligned Interface:</strong> Incorporate design elements that resonate with the energetic qualities being calculated and displayed.</li>
+                <li><strong>Educational Integration:</strong> Build learning components that help users understand the meaning behind their numbers rather than just presenting calculations.</li>
+                <li><strong>Personalized Experience:</strong> Create adaptive interfaces that respond to the user's specific numerological profile.</li>
+                <li><strong>Balanced Perspective:</strong> Present both strengths and challenges of each numerological aspect to provide a holistic understanding.</li>
+                <li><strong>Visual Representation:</strong> Utilize intuitive visualizations that help users see patterns and relationships between different numbers in their profile.</li>
+                <li><strong>Ethical Approach:</strong> Develop tools that empower users rather than creating dependency or making deterministic predictions.</li>
+            </ol>
+            
+            <div class="section">
+                <h3>Implementation Considerations</h3>
+                <p>When coding a numerology tool, consider these technical aspects:</p>
+                
+                <ul>
+                    <li><strong>Calculation Precision:</strong> Ensure all algorithms correctly handle master numbers and special reductions.</li>
+                    <li><strong>Data Validation:</strong> Implement robust validation for birth dates, names, and other user inputs.</li>
+                    <li><strong>Responsive Design:</strong> Create interfaces that work across all devices while maintaining energetic integrity.</li>
+                    <li><strong>Calculation Transparency:</strong> Show users how numbers are derived to build trust and understanding.</li>
+                    <li><strong>Cultural Adaptability:</strong> Account for different naming conventions and cultural numerological variations.</li>
+                    <li><strong>Performance Optimization:</strong> Ensure complex calculations and visualizations remain smooth and responsive.</li>
+                </ul>
+                
+                <h3>Sample Code Structure</h3>
+                <p>Below is a conceptual structure for implementing basic numerological calculations:</p>
+                
+                <div style="background-color: #f7fafc; padding: 15px; border-radius: 5px; font-family: monospace; font-size: 14px; overflow-x: auto;">
+                    <pre>
+// Basic numerology reduction function (preserving master numbers)
+function reduceNumber(num) {
+    // Check for master numbers
+    if (num === 11 || num === 22 || num === 33) {
+        return num;
+    }
+    
+    // Reduce to single digit
+    while (num > 9) {
+        let sum = 0;
+        while (num > 0) {
+            sum += num % 10;
+            num = Math.floor(num / 10);
+        }
+        num = sum;
+        
+        // Check for master numbers after reduction
+        if (num === 11 || num === 22 || num === 33) {
+            return num;
+        }
+    }
+    return num;
+}
+
+// Life Path Number calculation
+function calculateLifePath(birthDate) {
+    const date = new Date(birthDate);
+    const day = date.getDate();
+    const month = date.getMonth() + 1; // Month is 0-indexed
+    const year = date.getFullYear();
+    
+    const dayReduced = reduceNumber(day);
+    const monthReduced = reduceNumber(month);
+    const yearReduced = reduceNumber(year);
+    
+    const sum = dayReduced + monthReduced + yearReduced;
+    return reduceNumber(sum);
+}
+
+// Expression Number calculation (using full name)
+function calculateExpression(name) {
+    const letterValues = {
+        'a': 1, 'j': 1, 's': 1,
+        'b': 2, 'k': 2, 't': 2,
+        'c': 3, 'l': 3, 'u': 3,
+        'd': 4, 'm': 4, 'v': 4,
+        'e': 5, 'n': 5, 'w': 5,
+        'f': 6, 'o': 6, 'x': 6,
+        'g': 7, 'p': 7, 'y': 7,
+        'h': 8, 'q': 8, 'z': 8,
+        'i': 9, 'r': 9
+    };
+    
+    let sum = 0;
+    name = name.toLowerCase().replace(/[^a-z]/g, '');
+    
+    for (let i = 0; i < name.length; i++) {
+        sum += letterValues[name[i]] || 0;
+    }
+    
+    return reduceNumber(sum);
+}
+
+// Generate complete numerological profile
+function generateProfile(name, birthDate, phoneNumber) {
+    return {
+        lifePath: calculateLifePath(birthDate),
+        expression: calculateExpression(name),
+        soulUrge: calculateSoulUrge(name),
+        personality: calculatePersonality(name),
+        birthday: calculateBirthday(birthDate),
+        personalYear: calculatePersonalYear(birthDate),
+        challenges: calculateChallenges(birthDate),
+        phoneNumber: calculatePhoneNumber(phoneNumber)
+    };
+}
+                    </pre>
+                </div>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2 class="section-title">Looking Forward: Advanced Applications</h2>
+            <p>The field of numerology continues to evolve, with new applications and integrations that expand its relevance in the modern world.</p>
+            
+            <h3>Integrating Numerology with Other Systems</h3>
+            <p>Numerology can be combined with other esoteric and practical systems to create powerful tools for personal insight:</p>
+            
+            <div class="grid">
+                <div style="background-color: #fff; padding: 15px; border-radius: 10px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
+                    <h4>Numerology & Astrology</h4>
+                    <p>Connecting planetary influences with numerical vibrations to create comprehensive cosmic profiles. Planetary numbers can enhance understanding of how specific life path numbers manifest.</p>
+                </div>
+                
+                <div style="background-color: #fff; padding: 15px; border-radius: 10px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
+                    <h4>Numerology & Sacred Geometry</h4>
+                    <p>Using geometrical patterns that correspond to specific numbers to create visual tools and meditation aids that amplify numerological energies.</p>
+                </div>
+                
+                <div style="background-color: #fff; padding: 15px; border-radius: 10px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
+                    <h4>Numerology & Personality Psychology</h4>
+                    <p>Bridging ancient numerical wisdom with contemporary psychological understanding to create integrated approaches to personal development.</p>
+                </div>
+                
+                <div style="background-color: #fff; padding: 15px; border-radius: 10px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
+                    <h4>Numerology & Business</h4>
+                    <p>Applying numerological principles to naming, branding, timing of initiatives, and team dynamics to enhance organizational success.</p>
+                </div>
+            </div>
+            
+            <h3>Future Technological Applications</h3>
+            <p>As technology advances, new possibilities for numerological tools emerge:</p>
+            
+            <ul>
+                <li><strong>AI-Enhanced Interpretation:</strong> Machine learning algorithms that detect subtle patterns across large datasets of numerological profiles, revealing new insights.</li>
+                <li><strong>Augmented Reality Visualization:</strong> Interactive displays that render numerological energy patterns in 3D space, allowing users to physically interact with their numerical vibrations.</li>
+                <li><strong>Biofeedback Integration:</strong> Tools that measure physiological responses to different numerological energies, helping users identify which numerical frequencies most positively affect their wellbeing.</li>
+                <li><strong>Environmental Numerology:</strong> Applications that help design physical spaces with proportions and elements that resonate with specific numerological energies.</li>
+                <li><strong>Temporal Tracking:</strong> Systems that monitor how numerological influences shift over time, alerting users to significant transitions and opportunities.</li>
+            </ul>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>This numerology reference is designed as a comprehensive resource for understanding energy patterns and their applications.</p>
+            <p>Use this knowledge to identify and work with the numerological influences in your life.</p>
+        </div>
+    </footer>
+
+    <script>
+        function openTab(evt, tabName) {
+            var i, tabcontent, tablinks;
+            
+            tabcontent = document.getElementsByClassName("tab-content");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+            }
+            
+            tablinks = document.getElementsByClassName("tab-button");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace(" active", "");
+            }
+            
+            document.getElementById(tabName).style.display = "block";
+            evt.currentTarget.className += " active";
+        }
+        
+        // Add interactive features to the resonance diagram
+        document.addEventListener("DOMContentLoaded", function() {
+            // This would be expanded with interactive visualization features
+            // in a full implementation
+            
+            const points = document.querySelectorAll('.number-point');
+            
+            points.forEach(point => {
+                point.addEventListener('mouseover', function() {
+                    this.style.transform = 'translate(-50%, -50%) scale(1.2)';
+                    this.style.boxShadow = '0 5px 15px rgba(0,0,0,0.3)';
+                });
+                
+                point.addEventListener('mouseout', function() {
+                    this.style.transform = 'translate(-50%, -50%) scale(1)';
+                    this.style.boxShadow = '0 2px 5px rgba(0,0,0,0.2)';
+                });
+            });
+        });
+    </script>
+</body>
+</html>
