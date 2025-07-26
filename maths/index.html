@@ -73,13 +73,15 @@
         
         .project-input input {
             flex: 1;
-            min-width: 300px;
+            min-width: 200px;
+            max-width: 100%;
             padding: 12px 15px;
             background: rgba(255, 255, 255, 0.1);
             border: 1px solid rgba(255, 255, 255, 0.2);
             border-radius: 8px;
             color: #e0e0e0;
             font-size: 16px;
+            box-sizing: border-box;
         }
         
         .btn {
@@ -232,6 +234,36 @@
             margin-top: 10px;
             color: #96ceb4;
             overflow-x: auto;
+            position: relative;
+        }
+        
+        .copy-btn {
+            position: absolute;
+            bottom: 8px;
+            right: 8px;
+            background: rgba(78, 205, 196, 0.2);
+            border: 1px solid rgba(78, 205, 196, 0.3);
+            border-radius: 4px;
+            color: #4ecdc4;
+            padding: 4px 8px;
+            font-size: 0.7rem;
+            cursor: pointer;
+            opacity: 0.7;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+        
+        .copy-btn:hover {
+            opacity: 1;
+            background: rgba(78, 205, 196, 0.3);
+            transform: scale(1.05);
+        }
+        
+        .copy-btn.copied {
+            background: rgba(150, 206, 180, 0.3);
+            color: #96ceb4;
         }
         
         .footer {
@@ -442,7 +474,12 @@
                 <div class="math-applications">
                     ${concept.applications.map(app => `<span class="app-tag">${app}</span>`).join('')}
                 </div>
-                <div class="code-snippet">${concept.code}</div>
+                <div class="code-snippet">
+                    <button class="copy-btn" onclick="copyToAI('${id}', '${concept.title.replace(/'/g, "\\'")}')">
+                        copy
+                    </button>
+                    ${concept.code}
+                </div>
             `;
             
             return card;
@@ -481,6 +518,53 @@
                 card.classList.remove('favorited');
             });
             updateFavoritesCount();
+        }
+        
+        function copyToAI(cardId, conceptTitle) {
+            const concept = findConceptByTitle(conceptTitle);
+            if (!concept) return;
+            
+            const aiPrompt = `I want to implement ${conceptTitle} in my project${currentProject ? ` "${currentProject}"` : ''}. 
+
+**Mathematical Concept:** ${conceptTitle}
+**Description:** ${concept.description}
+**Potential Applications:** ${concept.applications.join(', ')}
+
+**Starting Code:**
+\`\`\`javascript
+${concept.code}
+\`\`\`
+
+Please help me:
+1. Expand this code into a more complete implementation
+2. Show me how to integrate it into a web interface
+3. Suggest practical use cases for my specific project
+4. Provide interactive examples I can experiment with
+
+Make the code production-ready and include proper error handling, documentation, and modern JavaScript practices.`;
+
+            navigator.clipboard.writeText(aiPrompt).then(() => {
+                const btn = document.querySelector(`#${cardId} .copy-btn`);
+                const originalText = btn.innerHTML;
+                btn.innerHTML = 'copied!';
+                btn.classList.add('copied');
+                
+                setTimeout(() => {
+                    btn.innerHTML = originalText;
+                    btn.classList.remove('copied');
+                }, 2000);
+            }).catch(err => {
+                console.error('Failed to copy: ', err);
+                alert('Copy failed. Please try again.');
+            });
+        }
+        
+        function findConceptByTitle(title) {
+            for (const section of Object.values(mathConcepts)) {
+                const concept = section.find(c => c.title === title);
+                if (concept) return concept;
+            }
+            return null;
         }
         
         function createProject() {
