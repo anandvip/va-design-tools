@@ -11,15 +11,6 @@
             box-sizing: border-box;
         }
         
-        html, body {
-            overflow-x: hidden;
-            max-width: 100%;
-        }
-        
-        *, *::before, *::after {
-            max-width: 100%;
-        }
-        
         body {
             font-family: 'Inter', system-ui, sans-serif;
             background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
@@ -207,25 +198,6 @@
             display: flex;
             align-items: center;
             gap: 10px;
-            word-wrap: break-word;
-            overflow-wrap: break-word;
-            hyphens: auto;
-        }
-        
-        @media (max-width: 768px) {
-            .section-title {
-                font-size: 1.3rem;
-                gap: 8px;
-            }
-        }
-        
-        @media (max-width: 480px) {
-            .section-title {
-                font-size: 1.1rem;
-                margin-bottom: 15px;
-                gap: 6px;
-                flex-wrap: wrap;
-            }
         }
         
         .section-icon {
@@ -261,16 +233,6 @@
             cursor: pointer;
             transition: all 0.3s ease;
             position: relative;
-            width: 100%;
-            box-sizing: border-box;
-            min-width: 0;
-            overflow: hidden;
-        }
-        
-        @media (max-width: 480px) {
-            .math-card {
-                padding: 15px;
-            }
         }
         
         .math-card:hover {
@@ -289,8 +251,6 @@
             color: #e0e0e0;
             margin-bottom: 8px;
             font-size: 1.1rem;
-            word-wrap: break-word;
-            overflow-wrap: break-word;
         }
         
         .math-description {
@@ -298,8 +258,6 @@
             opacity: 0.8;
             margin-bottom: 15px;
             line-height: 1.4;
-            word-wrap: break-word;
-            overflow-wrap: break-word;
         }
         
         .math-applications {
@@ -340,41 +298,32 @@
         }
         
         .code-snippet {
+            display: grid;
+            grid-template-areas: "content";
             background: rgba(0, 0, 0, 0.3);
             border-radius: 5px;
+            margin-top: 10px;
+            max-width: 100%;
+            box-sizing: border-box;
+            position: relative;
+        }
+        
+        .code-content {
+            grid-area: content;
             padding: 10px;
             font-family: 'Monaco', 'Menlo', monospace;
             font-size: 0.8rem;
-            margin-top: 10px;
             color: #96ceb4;
             overflow-x: auto;
-            position: relative;
             word-wrap: break-word;
             white-space: pre-wrap;
-            max-width: 100%;
-            box-sizing: border-box;
-        }
-        
-        @media (max-width: 768px) {
-            .code-snippet {
-                font-size: 0.75rem;
-                padding: 8px;
-            }
-        }
-        
-        @media (max-width: 480px) {
-            .code-snippet {
-                font-size: 0.7rem;
-                padding: 8px;
-                overflow-x: scroll;
-                white-space: pre;
-            }
+            margin: 0;
         }
         
         .copy-btn {
-            position: absolute;
-            bottom: 8px;
-            right: 8px;
+            grid-area: content;
+            justify-self: end;
+            align-self: end;
             background: rgba(78, 205, 196, 0.2);
             border: 1px solid rgba(78, 205, 196, 0.3);
             border-radius: 4px;
@@ -384,9 +333,34 @@
             cursor: pointer;
             opacity: 0.7;
             transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            gap: 4px;
+            z-index: 1;
+            margin: 8px;
+        }
+        
+        @media (max-width: 768px) {
+            .code-content {
+                font-size: 0.75rem;
+                padding: 8px;
+            }
+            
+            .copy-btn {
+                margin: 6px;
+                padding: 3px 6px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .code-content {
+                font-size: 0.7rem;
+                padding: 8px;
+                overflow-x: scroll;
+                white-space: pre;
+            }
+            
+            .copy-btn {
+                margin: 6px;
+                padding: 3px 6px;
+            }
         }
         
         .copy-btn:hover {
@@ -398,6 +372,124 @@
         .copy-btn.copied {
             background: rgba(150, 206, 180, 0.3);
             color: #96ceb4;
+        }
+        
+        .creative-section {
+            margin-top: 15px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 15px;
+        }
+        
+        .creative-toggle {
+            background: linear-gradient(45deg, rgba(150, 206, 180, 0.2), rgba(255, 107, 107, 0.2));
+            border: 1px solid rgba(150, 206, 180, 0.3);
+            border-radius: 8px;
+            color: #96ceb4;
+            padding: 8px 15px;
+            font-size: 0.8rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+            width: 100%;
+            font-weight: 500;
+        }
+        
+        .creative-toggle:hover {
+            background: linear-gradient(45deg, rgba(150, 206, 180, 0.3), rgba(255, 107, 107, 0.3));
+            transform: translateY(-1px);
+        }
+        
+        .creative-toggle.expanded {
+            border-bottom-left-radius: 0;
+            border-bottom-right-radius: 0;
+            background: linear-gradient(45deg, rgba(150, 206, 180, 0.3), rgba(255, 107, 107, 0.3));
+        }
+        
+        .toggle-icon {
+            transition: transform 0.3s ease;
+            font-size: 0.9rem;
+        }
+        
+        .toggle-icon.rotated {
+            transform: rotate(180deg);
+        }
+        
+        .creative-content {
+            background: rgba(150, 206, 180, 0.05);
+            border: 1px solid rgba(150, 206, 180, 0.2);
+            border-top: none;
+            border-radius: 0 0 8px 8px;
+            padding: 15px;
+            display: none;
+            animation: fadeIn 0.3s ease;
+            position: relative;
+        }
+        
+        .creative-content.expanded {
+            display: block;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .creative-text {
+            font-size: 0.85rem;
+            line-height: 1.6;
+            color: #e0e0e0;
+            margin-bottom: 15px;
+            font-style: italic;
+            opacity: 0.9;
+        }
+        
+        .creative-copy-section {
+            display: grid;
+            grid-template-areas: "content";
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+        
+        .creative-copy-content {
+            grid-area: content;
+            padding: 8px;
+            font-family: 'Monaco', 'Menlo', monospace;
+            font-size: 0.7rem;
+            color: #96ceb4;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+        
+        .creative-copy-btn {
+            grid-area: content;
+            justify-self: end;
+            align-self: end;
+            background: rgba(150, 206, 180, 0.3);
+            border: 1px solid rgba(150, 206, 180, 0.4);
+            border-radius: 4px;
+            color: #96ceb4;
+            padding: 3px 6px;
+            font-size: 0.65rem;
+            cursor: pointer;
+            opacity: 0.8;
+            transition: all 0.3s ease;
+            z-index: 1;
+            margin: 6px;
+        }
+        
+        .creative-copy-btn:hover {
+            opacity: 1;
+            background: rgba(150, 206, 180, 0.4);
+            transform: scale(1.05);
+        }
+        
+        .creative-copy-btn.copied {
+            background: rgba(78, 205, 196, 0.4);
+            color: #4ecdc4;
         }
         
         .footer {
@@ -485,25 +577,29 @@
                     title: 'Graph Theory',
                     description: 'Study of networks, connections, and relationships between entities',
                     applications: ['Social Networks', 'Navigation Systems', 'Knowledge Maps', 'Decision Trees'],
-                    code: `// Create a simple graph\nconst graph = {\n  nodes: ['A', 'B', 'C'],\n  edges: [['A','B'], ['B','C']]\n};`
+                    code: `// Create a simple graph\nconst graph = {\n  nodes: ['A', 'B', 'C'],\n  edges: [['A','B'], ['B','C']]\n};`,
+                    creativeIdea: `Transform static content into living network visualizations. Imagine your interface as a web of interconnected ideas that users can explore organically. Create layouts where elements pulse with connection strength, where clicking one item reveals its network of relationships through animated pathways. Build interfaces that breathe and grow as users discover new connections - turning flat information architecture into a 3D ecosystem of knowledge that users can navigate like explorers mapping uncharted territories.`
                 },
                 {
                     title: 'Topology',
                     description: 'Study of spatial properties preserved under continuous deformations',
                     applications: ['Morphing UI', 'Continuous Navigation', 'Shape Transitions', 'Elastic Layouts'],
-                    code: `// Topological transformation\nconst morph = (shape1, shape2, t) => {\n  return interpolate(shape1, shape2, t);\n};`
+                    code: `// Topological transformation\nconst morph = (shape1, shape2, t) => {\n  return interpolate(shape1, shape2, t);\n};`,
+                    creativeIdea: `Create interfaces that flow like liquid, where elements morph seamlessly between states. Design navigation that feels like walking through a living space - rooms that stretch and compress based on content importance, menus that unfold like origami, and layouts that rubber-band responsively. Build UI that treats the screen as a flexible membrane where information can bubble up, stretch across sections, and transform without breaking continuity. Make users feel like they're shaping reality itself as they interact.`
                 },
                 {
                     title: 'Category Theory',
                     description: 'Mathematical theory of structures and relationships between structures',
                     applications: ['Component Architecture', 'Data Flow Design', 'Conceptual Mapping', 'System Composition'],
-                    code: `// Categorical composition\nconst compose = (f, g) => (x) => f(g(x));\nconst pipeline = compose(render, transform);`
+                    code: `// Categorical composition\nconst compose = (f, g) => (x) => f(g(x));\nconst pipeline = compose(render, transform);`,
+                    creativeIdea: `Design interfaces as modular universes where components are like LEGO blocks that snap together intelligently. Create systems where dragging one element near another triggers automatic composition - like magnetic puzzle pieces that reveal new functionality when combined. Build workflows that visually show transformation pipelines, where users can see data flowing and morphing through each stage. Make the abstract concrete by showing how complex systems emerge from simple, composable parts.`
                 },
                 {
                     title: 'Abstract Algebra',
                     description: 'Study of algebraic structures like groups, rings, and fields',
                     applications: ['Symmetry Patterns', 'Transformation Groups', 'Encryption UI', 'Pattern Generation'],
-                    code: `// Group operations for symmetry\nconst rotate = (angle) => (point) => {\n  return transform(point, rotationMatrix(angle));\n};`
+                    code: `// Group operations for symmetry\nconst rotate = (angle) => (point) => {\n  return transform(point, rotationMatrix(angle));\n};`,
+                    creativeIdea: `Harness the hidden symmetries in your designs to create interfaces that feel mathematically perfect. Build layouts that auto-generate variations through rotation, reflection, and transformation groups. Create pattern-based navigation where users discover new content through symmetrical exploration - spin a central hub to reveal different perspectives, mirror interactions across axes, or build kaleidoscopic interfaces that generate infinite beautiful variations from simple rules. Make symmetry a discovery mechanism, not just decoration.`
                 }
             ],
             'applied-math': [
@@ -511,25 +607,29 @@
                     title: 'Probability Theory',
                     description: 'Mathematical framework for uncertainty and randomness',
                     applications: ['Prediction Interfaces', 'Risk Visualization', 'Personalization', 'A/B Testing'],
-                    code: `// Probability distribution\nconst gaussian = (x, μ, σ) => {\n  return Math.exp(-0.5 * ((x - μ) / σ) ** 2);\n};`
+                    code: `// Probability distribution\nconst gaussian = (x, μ, σ) => {\n  return Math.exp(-0.5 * ((x - μ) / σ) ** 2);\n};`,
+                    creativeIdea: `Turn uncertainty into visual poetry. Create interfaces where probability clouds visualize decision confidence - buttons that glow brighter when the system is more certain, layouts that shift opacity based on prediction strength. Build personalization that users can see and feel - watch the interface gradually adapt to their preferences through animated probability landscapes. Make risk tangible through particle systems, heat maps, and flowing uncertainty visualizations that help users understand and embrace rather than fear the unknown.`
                 },
                 {
                     title: 'Game Theory',
                     description: 'Mathematical study of strategic decision making',
                     applications: ['Interactive Negotiations', 'Collaborative Tools', 'Bidding Systems', 'Social Dynamics'],
-                    code: `// Nash equilibrium finder\nconst findEquilibrium = (payoffMatrix) => {\n  return optimizeStrategies(payoffMatrix);\n};`
+                    code: `// Nash equilibrium finder\nconst findEquilibrium = (payoffMatrix) => {\n  return optimizeStrategies(payoffMatrix);\n};`,
+                    creativeIdea: `Design interfaces as strategic playgrounds where every interaction is a move in a larger game. Create collaborative tools that visualize win-win scenarios in real-time, showing how different choices affect all players. Build negotiation interfaces where users can see the strategic landscape - payoff mountains and valleys that shift as parameters change. Turn decision-making into an engaging strategic visualization where users can explore "what-if" scenarios and discover optimal outcomes through interactive game theory simulations.`
                 },
                 {
                     title: 'Information Theory',
                     description: 'Quantification, storage, and communication of information',
                     applications: ['Data Compression', 'Signal Processing', 'Efficient Protocols', 'Noise Reduction'],
-                    code: `// Shannon entropy\nconst entropy = (probabilities) => {\n  return -probabilities.reduce((sum, p) => sum + p * Math.log2(p), 0);\n};`
+                    code: `// Shannon entropy\nconst entropy = (probabilities) => {\n  return -probabilities.reduce((sum, p) => sum + p * Math.log2(p), 0);\n};`,
+                    creativeIdea: `Make information density visible and beautiful. Create interfaces where visual complexity reflects information content - areas with high entropy shimmer with rich detail while simple regions remain clean and minimal. Build compression-aware layouts that intelligently summarize complex data into digestible chunks that expand on demand. Design communication tools that visualize signal-to-noise ratios, helping users craft clearer messages by showing information efficiency in real-time through dynamic visual feedback.`
                 },
                 {
                     title: 'Optimization',
                     description: 'Finding the best solution from all feasible solutions',
                     applications: ['Layout Optimization', 'Performance Tuning', 'Resource Allocation', 'Path Finding'],
-                    code: `// Gradient descent\nconst optimize = (f, x0, learningRate) => {\n  return x0 - learningRate * gradient(f, x0);\n};`
+                    code: `// Gradient descent\nconst optimize = (f, x0, learningRate) => {\n  return x0 - learningRate * gradient(f, x0);\n};`,
+                    creativeIdea: `Turn optimization into a visible journey. Create layouts that self-organize in real-time, showing users how elements find their optimal positions through animated gradient descent. Build resource allocation interfaces where users can watch efficiency landscapes shift as they adjust parameters. Design path-finding visualizations that reveal the beauty of algorithmic exploration - show multiple solution paths competing and converging toward optimal routes. Make optimization feel like conducting an orchestra of possibilities.`
                 }
             ],
             'consciousness-math': [
@@ -537,25 +637,29 @@
                     title: 'Network Theory',
                     description: 'Study of complex networks and their emergent properties',
                     applications: ['Mind Maps', 'Influence Networks', 'Collective Intelligence', 'Social Dynamics'],
-                    code: `// Network centrality\nconst betweennessCentrality = (graph, node) => {\n  return calculateShortestPaths(graph, node);\n};`
+                    code: `// Network centrality\nconst betweennessCentrality = (graph, node) => {\n  return calculateShortestPaths(graph, node);\n};`,
+                    creativeIdea: `Create interfaces that think like neural networks. Build mind-mapping tools where ideas cluster and connect organically, with important concepts naturally gravitating toward the center. Design social platforms that visualize influence propagation in real-time - watch how thoughts and trends flow through communities like ripples in water. Create collective intelligence interfaces where individual contributions merge into emergent group insights, showing how distributed cognition creates something greater than the sum of its parts.`
                 },
                 {
                     title: 'Dynamical Systems',
                     description: 'Mathematical study of systems that evolve over time',
                     applications: ['Behavior Modeling', 'State Transitions', 'Learning Curves', 'Growth Patterns'],
-                    code: `// State evolution\nconst evolve = (state, dynamics, dt) => {\n  return state + dynamics(state) * dt;\n};`
+                    code: `// State evolution\nconst evolve = (state, dynamics, dt) => {\n  return state + dynamics(state) * dt;\n};`,
+                    creativeIdea: `Design interfaces that learn and evolve with users. Create systems where the layout itself grows and adapts over time, forming habits and preferences just like human behavior. Build learning visualizations that show knowledge acquisition as flowing rivers of understanding, with breakthrough moments creating beautiful cascading changes. Design state transition interfaces that feel alive - where moving between modes creates smooth, physics-based animations that reflect the natural evolution of complex systems.`
                 },
                 {
                     title: 'Chaos Theory',
                     description: 'Study of sensitive dependence on initial conditions',
                     applications: ['Unpredictable Animations', 'Emergence Patterns', 'Creative Randomness', 'Natural Motion'],
-                    code: `// Strange attractor\nconst lorenz = (x, y, z) => {\n  return [σ*(y-x), x*(ρ-z)-y, x*y-β*z];\n};`
+                    code: `// Strange attractor\nconst lorenz = (x, y, z) => {\n  return [σ*(y-x), x*(ρ-z)-y, x*y-β*z];\n};`,
+                    creativeIdea: `Embrace beautiful unpredictability in your designs. Create interfaces where small user actions trigger surprisingly delightful consequences - butterfly effects that bloom into unexpected interface transformations. Build generative art systems where chaotic equations create ever-changing backgrounds that never repeat. Design navigation that feels organic and alive, where similar journeys lead to slightly different destinations, making exploration feel like discovering hidden dimensions in familiar spaces.`
                 },
                 {
                     title: 'Complexity Theory',
                     description: 'Study of complex systems and emergent behavior',
                     applications: ['Swarm Interfaces', 'Collective Behavior', 'Self-Organization', 'Adaptive Systems'],
-                    code: `// Emergent behavior\nconst swarm = (agents) => {\n  return agents.map(agent => updateAgent(agent, neighbors));\n};`
+                    code: `// Emergent behavior\nconst swarm = (agents) => {\n  return agents.map(agent => updateAgent(agent, neighbors));\n};`,
+                    creativeIdea: `Create interfaces that exhibit emergent intelligence. Design swarm-based navigation where UI elements behave like flocks of birds, organizing themselves based on user attention and content relationships. Build collaborative tools where individual actions create emergent group behaviors - watch how simple rules generate complex, beautiful patterns of interaction. Design adaptive systems that self-organize around user needs, creating interfaces that become more intuitive and powerful through collective use.`
                 }
             ],
             'design-math': [
@@ -563,25 +667,29 @@
                     title: 'Fractal Geometry',
                     description: 'Mathematical patterns that repeat at every scale',
                     applications: ['Infinite Zoom', 'Self-Similar Layouts', 'Organic Patterns', 'Recursive Design'],
-                    code: `// Mandelbrot set\nconst mandelbrot = (c, maxIter) => {\n  let z = 0;\n  for(let i = 0; i < maxIter; i++) {\n    z = z*z + c;\n  }\n};`
+                    code: `// Mandelbrot set\nconst mandelbrot = (c, maxIter) => {\n  let z = 0;\n  for(let i = 0; i < maxIter; i++) {\n    z = z*z + c;\n  }\n};`,
+                    creativeIdea: `Build interfaces with infinite depth and recursive beauty. Create zoom-based navigation where each level reveals self-similar structures - like Russian dolls of interface design. Design layouts that maintain their proportional beauty at any scale, from mobile to wall-sized displays. Build fractal search interfaces where drilling down into topics reveals similar organizational patterns at every level. Make users feel like they're exploring infinite digital landscapes where every view contains the seeds of the whole.`
                 },
                 {
                     title: 'Differential Geometry',
                     description: 'Geometry using calculus and linear algebra',
                     applications: ['Smooth Animations', 'Curved Interfaces', 'Surface Design', 'Natural Movement'],
-                    code: `// Bezier curves\nconst bezier = (t, p0, p1, p2, p3) => {\n  return Math.pow(1-t,3)*p0 + 3*Math.pow(1-t,2)*t*p1;\n};`
+                    code: `// Bezier curves\nconst bezier = (t, p0, p1, p2, p3) => {\n  return Math.pow(1-t,3)*p0 + 3*Math.pow(1-t,2)*t*p1;\n};`,
+                    creativeIdea: `Abandon the tyranny of straight lines and right angles. Design interfaces that flow like water, with elements following natural curves and surfaces. Create navigation that feels like sliding down perfectly smooth ramps rather than jumping between discrete states. Build layouts on curved surfaces - imagine interfaces wrapped around spheres, cylinders, or more exotic geometries. Make every transition feel inevitable and natural, like following the path of least resistance through a landscape of mathematical beauty.`
                 },
                 {
                     title: 'Harmonic Analysis',
                     description: 'Study of functions as superpositions of basic waves',
                     applications: ['Audio Visualization', 'Wave Patterns', 'Frequency Analysis', 'Rhythmic Design'],
-                    code: `// Fourier transform\nconst fft = (signal) => {\n  return discreteFourierTransform(signal);\n};`
+                    code: `// Fourier transform\nconst fft = (signal) => {\n  return discreteFourierTransform(signal);\n};`,
+                    creativeIdea: `Design interfaces that pulse with life through harmonic rhythms. Create layouts where elements oscillate gently in harmony, like a visual symphony of information. Build audio-reactive interfaces that decompose sound into beautiful frequency visualizations - watch music transform into flowing geometric patterns. Design rhythmic loading states and transitions that feel musical rather than mechanical. Make your interface sing by synchronizing visual elements to natural frequencies and harmonic progressions.`
                 },
                 {
                     title: 'Computational Geometry',
                     description: 'Algorithms for geometric problems',
                     applications: ['Collision Detection', 'Spatial Indexing', 'Mesh Generation', 'Path Planning'],
-                    code: `// Convex hull\nconst convexHull = (points) => {\n  return grahamScan(points);\n};`
+                    code: `// Convex hull\nconst convexHull = (points) => {\n  return grahamScan(points);\n};`,
+                    creativeIdea: `Transform spatial problems into intuitive visual solutions. Create interfaces where collision detection enables magical interactions - elements that bounce, merge, or repel each other in physically realistic ways. Build mesh-based layouts that adapt like living tissue, stretching and flowing to accommodate content changes. Design path-planning tools that show users optimal routes through complex information spaces, making navigation feel like exploring a beautifully mapped territory rather than wandering lost in digital wilderness.`
                 }
             ]
         };
@@ -609,10 +717,25 @@
                     ${concept.applications.map(app => `<span class="app-tag">${app}</span>`).join('')}
                 </div>
                 <div class="code-snippet">
+                    <div class="code-content">${concept.code}</div>
                     <button class="copy-btn" onclick="copyToAI('${id}', '${concept.title.replace(/'/g, "\\'")}')">
                         copy
                     </button>
-                    ${concept.code}
+                </div>
+                <div class="creative-section">
+                    <button class="creative-toggle" onclick="toggleCreativeSection('${id}')">
+                        <span>🚀 Unlock Creative Potential</span>
+                        <span class="toggle-icon">▼</span>
+                    </button>
+                    <div class="creative-content" id="creative-${id}">
+                        <div class="creative-text">${concept.creativeIdea}</div>
+                        <div class="creative-copy-section">
+                            <div class="creative-copy-content">Creative Prompt: Transform boring 2D layouts using ${concept.title} - ${concept.creativeIdea.substring(0, 200)}...</div>
+                            <button class="creative-copy-btn" onclick="copyCreativePrompt('${id}', '${concept.title.replace(/'/g, "\\'")}')">
+                                copy
+                            </button>
+                        </div>
+                    </div>
                 </div>
             `;
             
@@ -679,6 +802,69 @@ Make the code production-ready and include proper error handling, documentation,
 
             navigator.clipboard.writeText(aiPrompt).then(() => {
                 const btn = document.querySelector(`#${cardId} .copy-btn`);
+                const originalText = btn.innerHTML;
+                btn.innerHTML = 'copied!';
+                btn.classList.add('copied');
+                
+                setTimeout(() => {
+                    btn.innerHTML = originalText;
+                    btn.classList.remove('copied');
+                }, 2000);
+            }).catch(err => {
+                console.error('Failed to copy: ', err);
+                alert('Copy failed. Please try again.');
+            });
+        }
+        
+        function toggleCreativeSection(cardId) {
+            const content = document.getElementById(`creative-${cardId}`);
+            const toggle = document.querySelector(`#${cardId} .creative-toggle`);
+            const icon = toggle.querySelector('.toggle-icon');
+            
+            if (content.classList.contains('expanded')) {
+                content.classList.remove('expanded');
+                toggle.classList.remove('expanded');
+                icon.classList.remove('rotated');
+            } else {
+                content.classList.add('expanded');
+                toggle.classList.add('expanded');
+                icon.classList.add('rotated');
+            }
+        }
+        
+        function copyCreativePrompt(cardId, conceptTitle) {
+            const concept = findConceptByTitle(conceptTitle);
+            if (!concept) return;
+            
+            const creativePrompt = `🚀 CREATIVE TRANSFORMATION CHALLENGE
+
+Transform boring 2D layouts using ${conceptTitle}!
+
+**Your Mission:** Break free from flat, static interfaces and create something that feels alive and engaging.
+
+**Mathematical Concept:** ${conceptTitle}
+**Creative Vision:** ${concept.creativeIdea}
+
+**Practical Applications:** ${concept.applications.join(', ')}
+
+**Design Challenge:**
+1. Take your current interface and identify what makes it feel "flat" or "boring"
+2. Apply ${conceptTitle} principles to add depth, movement, or organic behavior
+3. Create layouts that respond, adapt, and surprise users
+4. Make the interface feel like a living ecosystem rather than static pages
+5. Push beyond traditional rectangles and grids - embrace curves, networks, and dynamic relationships
+
+**Starting Code Foundation:**
+\`\`\`javascript
+${concept.code}
+\`\`\`
+
+Transform the ordinary into extraordinary. Make users feel like they're exploring a digital universe rather than clicking through documentation. Turn mathematics into magic!
+
+What will you create that breaks the boundaries of conventional 2D design?`;
+
+            navigator.clipboard.writeText(creativePrompt).then(() => {
+                const btn = document.querySelector(`#${cardId} .creative-copy-btn`);
                 const originalText = btn.innerHTML;
                 btn.innerHTML = 'copied!';
                 btn.classList.add('copied');
