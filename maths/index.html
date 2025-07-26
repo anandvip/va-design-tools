@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mathematical Design Toolkit</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', system-ui, sans-serif;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+            color: #e0e0e0;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 40px 0;
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+        }
+        
+        .header h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4);
+            background-size: 300% 300%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: gradientShift 6s ease infinite;
+            margin-bottom: 10px;
+        }
+        
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.8;
+            margin-bottom: 20px;
+        }
+        
+        .project-setup {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 20px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .project-input {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        
+        .project-input input {
+            flex: 1;
+            min-width: 300px;
+            padding: 12px 15px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 8px;
+            color: #e0e0e0;
+            font-size: 16px;
+        }
+        
+        .btn {
+            padding: 12px 20px;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            border: none;
+            border-radius: 8px;
+            color: white;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(255, 107, 107, 0.3);
+        }
+        
+        .favorites-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            padding: 15px 20px;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 10px;
+        }
+        
+        .favorites-count {
+            font-weight: 600;
+            color: #4ecdc4;
+        }
+        
+        .clear-btn {
+            background: rgba(255, 107, 107, 0.2);
+            color: #ff6b6b;
+            border: 1px solid rgba(255, 107, 107, 0.3);
+        }
+        
+        .sections {
+            display: grid;
+            gap: 30px;
+        }
+        
+        .section {
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 15px;
+            padding: 25px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .section-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: #4ecdc4;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .section-icon {
+            font-size: 1.2rem;
+        }
+        
+        .math-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 15px;
+        }
+        
+        .math-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .math-card:hover {
+            transform: translateY(-3px);
+            border-color: #4ecdc4;
+            background: rgba(78, 205, 196, 0.1);
+        }
+        
+        .math-card.favorited {
+            border-color: #ff6b6b;
+            background: rgba(255, 107, 107, 0.1);
+        }
+        
+        .math-title {
+            font-weight: 600;
+            color: #e0e0e0;
+            margin-bottom: 8px;
+            font-size: 1.1rem;
+        }
+        
+        .math-description {
+            font-size: 0.9rem;
+            opacity: 0.8;
+            margin-bottom: 15px;
+            line-height: 1.4;
+        }
+        
+        .math-applications {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5px;
+            margin-bottom: 15px;
+        }
+        
+        .app-tag {
+            background: rgba(78, 205, 196, 0.2);
+            color: #4ecdc4;
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+        
+        .favorite-btn {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: none;
+            border: none;
+            font-size: 1.2rem;
+            cursor: pointer;
+            color: rgba(255, 255, 255, 0.3);
+            transition: all 0.3s ease;
+        }
+        
+        .favorite-btn:hover {
+            color: #ff6b6b;
+            transform: scale(1.2);
+        }
+        
+        .favorite-btn.active {
+            color: #ff6b6b;
+        }
+        
+        .code-snippet {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 5px;
+            padding: 10px;
+            font-family: 'Monaco', 'Menlo', monospace;
+            font-size: 0.8rem;
+            margin-top: 10px;
+            color: #96ceb4;
+            overflow-x: auto;
+        }
+        
+        .footer {
+            text-align: center;
+            margin-top: 50px;
+            padding: 20px;
+            opacity: 0.6;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Mathematical Design Toolkit</h1>
+            <p class="subtitle">Unlock mathematical creativity for interface design, visualizations, and consciousness-expanding tools</p>
+            
+            <div class="project-setup">
+                <div class="project-input">
+                    <input type="text" id="projectName" placeholder="Enter your project name (e.g., 'Neural Network Visualizer', 'Social Graph Interface')">
+                    <button class="btn" onclick="createProject()">Create Project</button>
+                </div>
+            </div>
+        </div>
+        
+        <div class="favorites-bar">
+            <div class="favorites-count">Favorites: <span id="favCount">0</span></div>
+            <button class="btn clear-btn" onclick="clearFavorites()">Clear All Favorites</button>
+        </div>
+        
+        <div class="sections">
+            <div class="section">
+                <div class="section-title">
+                    <span class="section-icon">🔗</span>
+                    Pure Mathematics - Structure & Pattern
+                </div>
+                <div class="math-grid" id="pure-math">
+                    <!-- Pure math concepts will be loaded here -->
+                </div>
+            </div>
+            
+            <div class="section">
+                <div class="section-title">
+                    <span class="section-icon">⚡</span>
+                    Applied Mathematics - Real-World Tools
+                </div>
+                <div class="math-grid" id="applied-math">
+                    <!-- Applied math concepts will be loaded here -->
+                </div>
+            </div>
+            
+            <div class="section">
+                <div class="section-title">
+                    <span class="section-icon">🧠</span>
+                    Consciousness & Behavior Modeling
+                </div>
+                <div class="math-grid" id="consciousness-math">
+                    <!-- Consciousness-related math will be loaded here -->
+                </div>
+            </div>
+            
+            <div class="section">
+                <div class="section-title">
+                    <span class="section-icon">🎨</span>
+                    Visual & Interactive Design
+                </div>
+                <div class="math-grid" id="design-math">
+                    <!-- Design-focused math will be loaded here -->
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer">
+            Mathematical Design Toolkit | Inspired by Vipul Anand's Design Philosophy | Wake up dormant creativity!
+        </div>
+    </div>
+
+    <script>
+        let favorites = new Set();
+        let currentProject = '';
+        
+        const mathConcepts = {
+            'pure-math': [
+                {
+                    title: 'Graph Theory',
+                    description: 'Study of networks, connections, and relationships between entities',
+                    applications: ['Social Networks', 'Navigation Systems', 'Knowledge Maps', 'Decision Trees'],
+                    code: `// Create a simple graph\nconst graph = {\n  nodes: ['A', 'B', 'C'],\n  edges: [['A','B'], ['B','C']]\n};`
+                },
+                {
+                    title: 'Topology',
+                    description: 'Study of spatial properties preserved under continuous deformations',
+                    applications: ['Morphing UI', 'Continuous Navigation', 'Shape Transitions', 'Elastic Layouts'],
+                    code: `// Topological transformation\nconst morph = (shape1, shape2, t) => {\n  return interpolate(shape1, shape2, t);\n};`
+                },
+                {
+                    title: 'Category Theory',
+                    description: 'Mathematical theory of structures and relationships between structures',
+                    applications: ['Component Architecture', 'Data Flow Design', 'Conceptual Mapping', 'System Composition'],
+                    code: `// Categorical composition\nconst compose = (f, g) => (x) => f(g(x));\nconst pipeline = compose(render, transform);`
+                },
+                {
+                    title: 'Abstract Algebra',
+                    description: 'Study of algebraic structures like groups, rings, and fields',
+                    applications: ['Symmetry Patterns', 'Transformation Groups', 'Encryption UI', 'Pattern Generation'],
+                    code: `// Group operations for symmetry\nconst rotate = (angle) => (point) => {\n  return transform(point, rotationMatrix(angle));\n};`
+                }
+            ],
+            'applied-math': [
+                {
+                    title: 'Probability Theory',
+                    description: 'Mathematical framework for uncertainty and randomness',
+                    applications: ['Prediction Interfaces', 'Risk Visualization', 'Personalization', 'A/B Testing'],
+                    code: `// Probability distribution\nconst gaussian = (x, μ, σ) => {\n  return Math.exp(-0.5 * ((x - μ) / σ) ** 2);\n};`
+                },
+                {
+                    title: 'Game Theory',
+                    description: 'Mathematical study of strategic decision making',
+                    applications: ['Interactive Negotiations', 'Collaborative Tools', 'Bidding Systems', 'Social Dynamics'],
+                    code: `// Nash equilibrium finder\nconst findEquilibrium = (payoffMatrix) => {\n  return optimizeStrategies(payoffMatrix);\n};`
+                },
+                {
+                    title: 'Information Theory',
+                    description: 'Quantification, storage, and communication of information',
+                    applications: ['Data Compression', 'Signal Processing', 'Efficient Protocols', 'Noise Reduction'],
+                    code: `// Shannon entropy\nconst entropy = (probabilities) => {\n  return -probabilities.reduce((sum, p) => sum + p * Math.log2(p), 0);\n};`
+                },
+                {
+                    title: 'Optimization',
+                    description: 'Finding the best solution from all feasible solutions',
+                    applications: ['Layout Optimization', 'Performance Tuning', 'Resource Allocation', 'Path Finding'],
+                    code: `// Gradient descent\nconst optimize = (f, x0, learningRate) => {\n  return x0 - learningRate * gradient(f, x0);\n};`
+                }
+            ],
+            'consciousness-math': [
+                {
+                    title: 'Network Theory',
+                    description: 'Study of complex networks and their emergent properties',
+                    applications: ['Mind Maps', 'Influence Networks', 'Collective Intelligence', 'Social Dynamics'],
+                    code: `// Network centrality\nconst betweennessCentrality = (graph, node) => {\n  return calculateShortestPaths(graph, node);\n};`
+                },
+                {
+                    title: 'Dynamical Systems',
+                    description: 'Mathematical study of systems that evolve over time',
+                    applications: ['Behavior Modeling', 'State Transitions', 'Learning Curves', 'Growth Patterns'],
+                    code: `// State evolution\nconst evolve = (state, dynamics, dt) => {\n  return state + dynamics(state) * dt;\n};`
+                },
+                {
+                    title: 'Chaos Theory',
+                    description: 'Study of sensitive dependence on initial conditions',
+                    applications: ['Unpredictable Animations', 'Emergence Patterns', 'Creative Randomness', 'Natural Motion'],
+                    code: `// Strange attractor\nconst lorenz = (x, y, z) => {\n  return [σ*(y-x), x*(ρ-z)-y, x*y-β*z];\n};`
+                },
+                {
+                    title: 'Complexity Theory',
+                    description: 'Study of complex systems and emergent behavior',
+                    applications: ['Swarm Interfaces', 'Collective Behavior', 'Self-Organization', 'Adaptive Systems'],
+                    code: `// Emergent behavior\nconst swarm = (agents) => {\n  return agents.map(agent => updateAgent(agent, neighbors));\n};`
+                }
+            ],
+            'design-math': [
+                {
+                    title: 'Fractal Geometry',
+                    description: 'Mathematical patterns that repeat at every scale',
+                    applications: ['Infinite Zoom', 'Self-Similar Layouts', 'Organic Patterns', 'Recursive Design'],
+                    code: `// Mandelbrot set\nconst mandelbrot = (c, maxIter) => {\n  let z = 0;\n  for(let i = 0; i < maxIter; i++) {\n    z = z*z + c;\n  }\n};`
+                },
+                {
+                    title: 'Differential Geometry',
+                    description: 'Geometry using calculus and linear algebra',
+                    applications: ['Smooth Animations', 'Curved Interfaces', 'Surface Design', 'Natural Movement'],
+                    code: `// Bezier curves\nconst bezier = (t, p0, p1, p2, p3) => {\n  return Math.pow(1-t,3)*p0 + 3*Math.pow(1-t,2)*t*p1;\n};`
+                },
+                {
+                    title: 'Harmonic Analysis',
+                    description: 'Study of functions as superpositions of basic waves',
+                    applications: ['Audio Visualization', 'Wave Patterns', 'Frequency Analysis', 'Rhythmic Design'],
+                    code: `// Fourier transform\nconst fft = (signal) => {\n  return discreteFourierTransform(signal);\n};`
+                },
+                {
+                    title: 'Computational Geometry',
+                    description: 'Algorithms for geometric problems',
+                    applications: ['Collision Detection', 'Spatial Indexing', 'Mesh Generation', 'Path Planning'],
+                    code: `// Convex hull\nconst convexHull = (points) => {\n  return grahamScan(points);\n};`
+                }
+            ]
+        };
+        
+        function loadMathConcepts() {
+            Object.keys(mathConcepts).forEach(section => {
+                const container = document.getElementById(section);
+                mathConcepts[section].forEach((concept, index) => {
+                    const card = createMathCard(concept, `${section}-${index}`);
+                    container.appendChild(card);
+                });
+            });
+        }
+        
+        function createMathCard(concept, id) {
+            const card = document.createElement('div');
+            card.className = 'math-card';
+            card.id = id;
+            
+            card.innerHTML = `
+                <button class="favorite-btn" onclick="toggleFavorite('${id}')">♡</button>
+                <div class="math-title">${concept.title}</div>
+                <div class="math-description">${concept.description}</div>
+                <div class="math-applications">
+                    ${concept.applications.map(app => `<span class="app-tag">${app}</span>`).join('')}
+                </div>
+                <div class="code-snippet">${concept.code}</div>
+            `;
+            
+            return card;
+        }
+        
+        function toggleFavorite(id) {
+            const btn = document.querySelector(`#${id} .favorite-btn`);
+            const card = document.getElementById(id);
+            
+            if (favorites.has(id)) {
+                favorites.delete(id);
+                btn.textContent = '♡';
+                btn.classList.remove('active');
+                card.classList.remove('favorited');
+            } else {
+                favorites.add(id);
+                btn.textContent = '♥';
+                btn.classList.add('active');
+                card.classList.add('favorited');
+            }
+            
+            updateFavoritesCount();
+        }
+        
+        function updateFavoritesCount() {
+            document.getElementById('favCount').textContent = favorites.size;
+        }
+        
+        function clearFavorites() {
+            favorites.clear();
+            document.querySelectorAll('.favorite-btn').forEach(btn => {
+                btn.textContent = '♡';
+                btn.classList.remove('active');
+            });
+            document.querySelectorAll('.math-card').forEach(card => {
+                card.classList.remove('favorited');
+            });
+            updateFavoritesCount();
+        }
+        
+        function createProject() {
+            const projectName = document.getElementById('projectName').value;
+            if (projectName) {
+                currentProject = projectName;
+                alert(`Project "${projectName}" created! Start favoriting mathematical concepts for your project.`);
+                document.getElementById('projectName').value = '';
+            }
+        }
+        
+        // Initialize the toolkit
+        document.addEventListener('DOMContentLoaded', function() {
+            loadMathConcepts();
+        });
+    </script>
+</body>
+</html>
