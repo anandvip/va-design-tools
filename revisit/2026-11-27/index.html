@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Revisit: VA Design Tools</title>
+<meta name="description" content="Dated revisit of the va-design-tools repo, 27 Nov 2026.">
+<style>
+:root{
+  --bg:#F7F7F5;--canvas:#FFFFFF;--hair:#E2E2DE;--strong:#111111;
+  --ink:#111111;--ink2:#52524E;--muted:#767670;--accent:#146C43;--accent-bg:#F2F9F5;
+  --sans:-apple-system,BlinkMacSystemFont,"Inter","Helvetica Neue",Arial,sans-serif;
+  --mono:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace;
+  color-scheme:light;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#0F0F0E;--canvas:#171716;--hair:#2C2C29;--strong:#EDEDE8;
+  --ink:#EDEDE8;--ink2:#B4B4AD;--muted:#8E8E87;--accent:#5CC28F;--accent-bg:#13241B;color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0F0F0E;--canvas:#171716;--hair:#2C2C29;--strong:#EDEDE8;
+  --ink:#EDEDE8;--ink2:#B4B4AD;--muted:#8E8E87;--accent:#5CC28F;--accent-bg:#13241B;color-scheme:dark}
+*{box-sizing:border-box;margin:0;padding:0}
+html{background:var(--bg);color:var(--ink);font:15px/1.5 var(--sans);-webkit-text-size-adjust:100%}
+body{background:var(--bg);min-height:100vh}
+.shell{max-width:720px;margin:0 auto;background:var(--canvas);border-inline:1px solid var(--hair);min-height:100vh;
+  padding-block:24px 48px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+@media (max-width:720px){.shell{border-inline:none}}
+.micro{font-size:10.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.mono{font-family:var(--mono);font-variant-numeric:tabular-nums}
+header{border-bottom:1.5px solid var(--strong);padding-bottom:12px;margin-bottom:20px}
+h1{font-size:20px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;text-wrap:balance;margin-top:4px}
+.sub{color:var(--ink2);font-size:13px;margin-top:4px}
+section{margin-bottom:24px}
+h2{font-size:13px;font-weight:800;letter-spacing:.04em;text-transform:uppercase;border-bottom:1px solid var(--strong);padding-bottom:6px;margin-bottom:10px}
+p{max-width:65ch;color:var(--ink2);margin-bottom:8px}
+.kv{border:1px solid var(--hair);border-radius:3px}
+.kv div{display:grid;grid-template-columns:140px 1fr;gap:8px;padding:9px 12px;border-bottom:1px solid var(--hair);font-size:13px}
+.kv div:last-child{border-bottom:none}
+.kv dt{font-weight:700;color:var(--ink)}
+.kv dd{color:var(--ink2);min-width:0}
+@media (max-width:420px){.kv div{grid-template-columns:1fr;gap:2px}}
+.shift{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+@media (max-width:520px){.shift{grid-template-columns:1fr}}
+.card{border:1px solid var(--hair);border-radius:3px;padding:12px;background:var(--canvas)}
+.card.now{border-left:4px solid var(--accent)}
+.card.then{border-left:4px solid var(--muted)}
+.card p{font-size:13px;margin:6px 0 0}
+.letter{background:var(--accent-bg);border:1px solid var(--hair);border-left:3px solid var(--strong);border-radius:3px;padding:14px}
+.letter p{color:var(--ink)}
+a{color:var(--ink);text-underline-offset:3px}
+footer{border-top:1px solid var(--hair);padding-top:10px;font-size:12px;color:var(--muted)}
+</style>
+</head>
+<body>
+<div class="shell">
+<header>
+  <div class="micro">Revisit · <span class="mono">27 Nov 2026</span></div>
+  <h1>VA Design Tools</h1>
+  <div class="sub">design.vipulanand.in, picked up again after a long quiet spell</div>
+</header>
+
+<section>
+  <h2>How far on</h2>
+  <dl class="kv">
+    <div><dt>Started</dt><dd class="mono">2 Apr 2025</dd></div>
+    <div><dt>Last touched</dt><dd class="mono">30 Jul 2025</dd></div>
+    <div><dt>Picked up</dt><dd class="mono">27 Nov 2026</dd></div>
+    <div><dt>Time since start</dt><dd>1 year, 7 months and 25 days</dd></div>
+    <div><dt>What was here</dt><dd>Image Style Explorer, a Mathematical Design Toolkit and a Numerology Energy Patterns reference</dd></div>
+  </dl>
+</section>
+
+<section>
+  <h2>From ideation to practice</h2>
+  <div class="shift">
+    <div class="card then">
+      <div class="micro">April 2025</div>
+      <p>A place to collect image styles for AI image tools, keep a project's image treatment consistent, and gather favourites, with numerology and maths as lenses on design.</p>
+    </div>
+    <div class="card now">
+      <div class="micro">November 2026</div>
+      <p>The repo becomes the home of a written design language. Swiss Ledger now has named tokens, type rules and components, and it already runs a live page, the VedicVA timing report.</p>
+    </div>
+  </div>
+  <p style="margin-top:10px">The question has moved from "which styles do I like?" to "which rules can a team of AI agents build from, the same way every time?" Collecting favourites was the first step toward writing a system down.</p>
+</section>
+
+<section>
+  <h2>Added with this revisit</h2>
+  <p><a href="https://github.com/anandvip/va-design-tools/blob/main/guidelines/swiss-ledger.md">Swiss Ledger design guidelines</a>: zero fluff, high signal, pure CSS and offline. Chosen from three first-round drafts.</p>
+</section>
+
+<section>
+  <h2>A note to my future self</h2>
+  <div class="letter">
+    <p>The time spent here in 2025 was not wasted. Sorting styles, testing palettes and reading patterns into numbers was your mind working ahead, in timelines that hadn't arrived yet.</p>
+    <p>Those early pages taught you what you like and why. That is exactly what made it possible to pick one design language out of three and write it down clearly. Keep returning here. Each visit builds on the last.</p>
+  </div>
+</section>
+
+<footer>Revisit page for va-design-tools · <span class="mono">27 Nov 2026</span></footer>
+</div>
+</body>
+</html>
